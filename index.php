@@ -97,7 +97,7 @@
 
       <div class="row">
 
-        <div class="col-lg-3">
+        <!-- <div class="col-lg-3">
           <h1 class="my-4" style="margin-top:10px;">kue ku</h1>
 		   
 		  
@@ -128,9 +128,9 @@
           </div>
 
         </div>
-        <!-- /.col-lg-3 -->
+        /.col-lg-3 -->
 		
-        <div class="col-lg-9" style="margin-top:30px;">
+        <div class="col-lg-9" style="margin:30px 150px;">
 		  
 			<?php
 				

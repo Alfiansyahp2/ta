@@ -36,7 +36,7 @@ if (isset($_POST['login'])) {
 }
 ?>
 
-<div class="col-lg-6" style="margin-left:150px;">
+<div class="col-lg-6" style="margin:165px 150px;">
     <div class="card">
         <div class="card-title">
             <h4>Halaman Login</h4>
