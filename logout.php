@@ -6,6 +6,6 @@
 	unset($_SESSION['level']);
 	
 	
-	echo "<script language='javascript'>alert('anda berhasil logout!'); document.location='index.php';</script>";
+	echo "<script language='javascript'>alert('anda berhasil logout!'); document.location='home.php';</script>";
 
 ?>

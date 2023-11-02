@@ -70,6 +70,17 @@
 42. responsive
 
 */
+
+.nav-link-button {
+  background-color: #007bff; /* Warna latar belakang tombol */
+  color: #fff; /* Warna teks pada tombol */
+  border: none; /* Menghapus garis pinggir tombol */
+  padding: 10px 20px; /* Padding di dalam tombol */
+  border-radius: 5px; /* Membuat sudut tombol sedikit melengkung */
+  cursor: pointer; /* Mengubah kursor menjadi tangan saat diarahkan ke tombol */
+  text-decoration: none; /* Menghilangkan garis bawah pada tautan di dalam tombol */
+}
+
 .preloader {
   width: 100%;
   height: 100%;

@@ -76,7 +76,7 @@
               <a class="nav-link" href="logout.php">Logout</a>
             </li>
 			<li class="nav-item">
-              <a class="nav-link" href="index.php">Home</a>
+              <a class="nav-link" href="home.php">Home</a>
             </li>
 			<?php
 				}else{
