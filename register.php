@@ -27,6 +27,7 @@
                         <input type="password" name="password" class="form-control" placeholder="Password" required>
                     </div>
                     <input type="submit" class="btn btn-success" name="daftar" value="Daftar">
+                    <a href="index.php?page=login" class="btn btn-success " >Login</a>
                 </form>
             </div>
         </div>
@@ -55,6 +56,8 @@ if (isset($_POST['daftar'])) {
         if ($mysqli->query($insertUserQuery) === TRUE) {
             echo "<script type='text/javascript'> alert('Registrasi berhasil, silahkan login.')</script>";
             echo "<script type='text/javascript'> window.location.href='?page=';</script>";
+            header("Location: home.php"); // Mengalihkan ke halaman home.php
+            exit;
         } else {
             echo "Error: " . $insertUserQuery . "<br>" . $mysqli->error;
         }

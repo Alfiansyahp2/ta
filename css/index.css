@@ -1,0 +1,53 @@
+.bg-dark {
+    background: rgb(233, 165, 30) !important;
+    color: #ffffff;
+    fill: #444c67;
+  }
+.dropdown > a {
+    position: relative;
+  }
+  .dropdown > a::after {
+    content: "\25BC"; 
+    display: inline-block;
+    margin-left: 5px; 
+    z-index: 1; 
+  }
+  .dropdown ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgb(15, 9, 9);
+    border: 1px solid #520909;
+    z-index: 2; 
+  }
+  .dropdown ul li {
+    display: block;
+    z-index: 2; 
+  }
+  .dropdown ul li a {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff; 
+    display: block;
+    z-index: 2;
+  }
+  .dropdown:hover ul {
+    display: block;
+  }
+  /* Gaya untuk teks pada elemen dengan class "nav-link" */
+.nav-link {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  /* Font family */
+    font-size: 20px; /* Ukuran font */
+    text-transform: uppercase; /* Mengubah huruf menjadi kapital */
+    color: #fbfbfb; /* Warna teks */
+    text-decoration: none; /* Menghilangkan dekorasi tautan */
+    margin-right: 20px; /* Jarak kanan antar tautan */
+  }
+  
+  /* Gaya untuk tautan yang diberi warna berbeda saat dihover */
+  .nav-link:hover {
+    color: #007bff; /* Warna teks saat dihover */
+  }
+  
+  
