@@ -48,7 +48,7 @@ $totalbarang = count($keranjang);
 
                     <!-- ... Your navigation code ... -->
                     <li class="nav-item">
-                        <a class="navbar-brand" href="index.php?page=keranjang"><img src="images/cart.png" alt="logo-cart" style="background-color:red; padding:2px 10px; border-radius:3px;"></a>
+                        <a class="navbar-brand" href="index.php?page=keranjang"><img src="images/cart.png" alt="logo-cart" style="background-color:red; padding:6px 12px; border-radius:3px;"></a>
                     </li>
                     
     </nav>

@@ -1,40 +1,47 @@
 .bg-dark {
-    background: rgb(233, 165, 30) !important;
-    color: #ffffff;
-    fill: #444c67;
-  }
+  background: rgb(233, 165, 30) !important;
+  color: #ffffff;
+  fill: #444c67;
+}
 .dropdown > a {
-    position: relative;
-  }
-  .dropdown > a::after {
-    content: "\25BC"; 
-    display: inline-block;
-    margin-left: 5px; 
-    z-index: 1; 
-  }
-  .dropdown ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: rgb(15, 9, 9);
-    border: 1px solid #520909;
-    z-index: 2; 
-  }
-  .dropdown ul li {
-    display: block;
-    z-index: 2; 
-  }
-  .dropdown ul li a {
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #fff; 
-    display: block;
-    z-index: 2;
-  }
-  .dropdown:hover ul {
-    display: block;
-  }
+  position: relative;
+}
+.dropdown > a::after {
+  content: "\25BC"; 
+  display: inline-block;
+  margin-left: 5px;  
+}
+.dropdown ul {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  border-radius: 5px; 
+  position: absolute;
+  top: 100%; 
+  background-color: rgb(201, 136, 8); 
+  min-width: 100%;
+}
+.dropdown ul li {
+  display: block;
+  z-index: 2; 
+  white-space: nowrap; /* Mencegah teks untuk pindah ke baris baru */
+}
+.dropdown ul li a {
+  padding: 10px 10px; /* Menyesuaikan padding untuk memberikan lebih banyak ruang */
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: background-color 0.3s ease-in-out; /* Animasi perubahan warna latar belakang */
+}
+ 
+.dropdown:hover ul {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  background-color: rgb(186, 124, 6); /* Warna latar belakang saat dropdown muncul */
+  display:block;
+}
   /* Gaya untuk teks pada elemen dengan class "nav-link" */
 .nav-link {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  /* Font family */
@@ -49,5 +56,19 @@
   .nav-link:hover {
     color: #007bff; /* Warna teks saat dihover */
   }
-  
+  /* Gaya default untuk layar yang lebih besar */
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Gaya responsif untuk layar berukuran medium */
+@media (max-width: 768px) {
+  .container {
+      width: 100%;
+  }
+}
+
+
+
   

@@ -65,6 +65,14 @@ $totalbarang = count($keranjang);
 						<li class="nav-item">
 							<a class="nav-link" href="index.php">Home</a>
 						</li>
+						<li class="dropdown">
+							<a class="nav-link" href="produk.php">Produk</a>
+							<ul>
+								<li><a href="roti.php">Roti</a></li>
+								<li><a href="donat.php">Donat</a></li>
+								<li><a href="kue.php">Kue Tart</a></li>
+						</li>
+					</ul> 
 					<li class="nav-item">
 						<a class="nav-link" href="logout.php">Logout</a>
 					</li>
@@ -90,11 +98,119 @@ $totalbarang = count($keranjang);
 		</div>
 	</nav>
 
-	<!-- Page Content -->
 	
 
-
 			<div class="col-lg-9" style="margin:30px auto;">
+            <div class="row">
+    <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/kue/promo6.jpg" alt="gambar">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: blue;">Tiramisu cake</h4>
+                    <h5>Rp,40,000</h5>
+                    <p class="card-text"></p><p>admin yang masukin</p><p></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"><a href="tambah_keranjang.php?id_kue=6" class="btn btn-danger">+Masukan Keranjang</a></small>
+                </div>
+            </div>
+        </div><div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/kue/promo3.jpg" alt="gambar">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: blue;">red velvet cake</h4>
+                    <h5>Rp,235,000</h5>
+                    <p class="card-text"></p><p>ada yang masukin admin</p><p></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"><a href="tambah_keranjang.php?id_kue=3" class="btn btn-danger">+Masukan Keranjang</a></small>
+                </div>
+            </div>
+        </div><div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/kue/promo1.jpg" alt="gambar">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: blue;">american chocolate cake</h4>
+                    <h5>Rp,210,000</h5>
+                    <p class="card-text"></p><p>di edit oleh admin</p><p></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"><a href="tambah_keranjang.php?id_kue=2" class="btn btn-danger">+Masukan Keranjang</a></small>
+                </div>
+            </div>
+        </div><div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/kue/promo9.jpg" alt="gambar">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: blue;">green tea cake</h4>
+                    <h5>Rp,225,000</h5>
+                    <p class="card-text"></p><p>admin yang masukin</p><p></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"><a href="tambah_keranjang.php?id_kue=8" class="btn btn-danger">+Masukan Keranjang</a></small>
+                </div>
+            </div>
+        </div><div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/kue/promo5.jpg" alt="gambar">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: blue;">summer fruit cake</h4>
+                    <h5>Rp,230,000</h5>
+                    <p class="card-text"></p><p>admin yang masukin</p><p></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"><a href="tambah_keranjang.php?id_kue=5" class="btn btn-danger">+Masukan Keranjang</a></small>
+                </div>
+            </div>
+        </div><div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/kue/promo11.jpg" alt="gambar">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: blue;">Black Forest Cake</h4>
+                    <h5>Rp,210,000</h5>
+                    <p class="card-text"></p><p>admin yang masukin</p><p></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"><a href="tambah_keranjang.php?id_kue=10" class="btn btn-danger">+Masukan Keranjang</a></small>
+                </div>
+            </div>
+        </div><div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/kue/promo4.jpg" alt="gambar">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: blue;">praline cake</h4>
+                    <h5>Rp,245,000</h5>
+                    <p class="card-text"></p><p>admin yang masukin</p><p></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"><a href="tambah_keranjang.php?id_kue=4" class="btn btn-danger">+Masukan Keranjang</a></small>
+                </div>
+            </div>
+        </div><div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/kue/promo7.jpg" alt="gambar">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: blue;">opera cake</h4>
+                    <h5>Rp,225,000</h5>
+                    <p class="card-text"></p><p>admin yang masukin</p><p></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"><a href="tambah_keranjang.php?id_kue=7" class="btn btn-danger">+Masukan Keranjang</a></small>
+                </div>
+            </div>
+        </div><div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/kue/promo10.jpg" alt="gambar">
+                <div class="card-body">
+                    <h4 class="card-title" style="color: blue;">Triple Cake</h4>
+                    <h5>Rp,225,000</h5>
+                    <p class="card-text"></p><p>admin yang masukin</p><p></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"><a href="tambah_keranjang.php?id_kue=9" class="btn btn-danger">+Masukan Keranjang</a></small>
+                </div>
+            </div>
+        </div></div>
 
 				<?php
 
