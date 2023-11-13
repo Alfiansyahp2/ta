@@ -55,7 +55,7 @@ if (isset($_POST['daftar'])) {
 
         if ($mysqli->query($insertUserQuery) === TRUE) {
             echo "<script type='text/javascript'> alert('Registrasi berhasil, silahkan login.')</script>";
-            echo "<script type='text/javascript'> window.location.href='?page=';</script>";
+            echo "<script type='text/javascript'> window.location.href='home.php?page=';</script>";
             header("Location: home.php"); // Mengalihkan ke halaman home.php
             exit;
         } else {
