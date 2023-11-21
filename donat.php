@@ -94,67 +94,34 @@ $totalbarang = count($keranjang);
 	</nav>
     	<!-- Page Content -->
 	<div class="container">
-    </br><br><br><h1>DONAT</h1>
+    </br><br><h1>DONAT</h1></br>
 
 <div class="row">
 
-    <div class="col-lg-3";>
+    <div class="col-lg-12" ;>
         
 
-
-        <div class="list-group">
-            <?php
-
-            $user_id = $mysqli->real_escape_string($user_id);
-
-            // Eksekusi query
-            $sql = "SELECT * FROM user WHERE user_id = '$user_id'";
-            $result = $mysqli->query($sql);
-
-            if (!$result) {
-                die("Error: " . $mysqli->error);
-            }
-
-            // Mengambil data
-            $data_user = $result->fetch_assoc();
-
-            ?>
-           
-
-        </div>
-
-    </div>
-
-
-    <div class="col-lg-9" style="margin:30px auto;">
-
-        <?php
-
-        $page = @$_GET['page'];
-        $action = @$_GET['action'];
-        if ($page == "register") {
-            include "register.php";
-        } else if ($page == "login") {
-            include "login.php";
-        } else if ($page == "lupa_pass") {
-            include "lupa_pass.php";
-        } else if ($page == "edit_user") {
-            include "edit_profil.php";
-        } else if ($page == "keranjang") {
-            include "keranjang.php";
-        } else if ($page == "data_pemesan") {
-            include "data_pemesan.php";
-        } else if ($page == "pesanan") {
-            if ($action == "") {
-                include "module/pesanan/list_pesanan.php";
-            } else if ($action == "detail") {
-                include "module/pesanan/detail.php";
-            } else if ($action == "konfirmasi_pembayaran") {
-                include "module/pesanan/konfirmasi_pembayaran.php";
-            } 
-        } 
-
-        ?>
+	<div class='row'>
+    <?php
+    $querydonat = mysqli_query($mysqli, "SELECT kategori.kategori, kue.id_kue, kue.nama_kue, kue.spesifikasi, kue.gambar, kue.harga FROM kategori RIGHT JOIN kue ON kategori.id_kategori = kue.id_kategori WHERE kategori='donat' AND kue.status='on' ORDER BY RAND() ") or die(mysqli_error($mysqli));
+    while ($rowdonat = mysqli_fetch_assoc($querydonat)) {
+        echo "<div class='col-lg-3 col-md-6 mb-4'>
+            <div class='card h-100'>
+                <img class='card-img-top' src='images/kue/{$rowdonat['gambar']}' alt='gambar'>
+                <div class='card-body'>
+                    <h4 class='card-title' style='color: blue;'>{$rowkdonat['nama_kue']}</h4>
+                    <h5>" . rupiah($rowdonat['harga']) . "</h5>
+                    <p class='card-text'>{$rowdonat['spesifikasi']}</p>
+                </div>
+                <div class='card-footer'>
+                    <small class='text-muted'><a href='tambah_keranjang.php?id_kue={$rowdonat['id_kue']}' class='btn btn-danger'>+Masukan Keranjang</a></small>
+                </div>
+            </div>
+        </div>";
+    }
+	
+    ?>
+</div>
 
     </div>
 
