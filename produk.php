@@ -56,7 +56,7 @@ $totalbarang = count($keranjang);
 
 					?>
 					<li class="nav-item">
-						<a class="navbar-brand" href="?page=keranjang"><img src="images/cart.png" alt="logo-cart"
+						<a class="navbar-brand" href="index.php?page=keranjang"><img src="images/cart.png" alt="logo-cart"
 								style="background-color:red; padding:2px 10px; border-radius:3px;"></a>
 					</li>
 
@@ -97,12 +97,32 @@ $totalbarang = count($keranjang);
     </br></br><h1>PRODUK</h1></br>
 
 <div class="row">
+<?php
+
+$page = @$_GET['page'];
+$action = @$_GET['action'];
+
+if ($page == "keranjang") {
+	include "keranjang.php";
+} else if ($page == "data_pemesan") {
+	include "data_pemesan.php";
+} else if ($page == "pesanan") {
+	if ($action == "") {
+		include "module/pesanan/list_pesanan.php";
+	} else if ($action == "detail") {
+		include "module/pesanan/detail.php";
+	} else if ($action == "konfirmasi_pembayaran") {
+		include "module/pesanan/konfirmasi_pembayaran.php";
+	} 
+}
+
+?>
 
     <div class="col-lg-12" ;>
         
 	<div class='row'>
     <?php
-    $querykatalog = mysqli_query($mysqli, "SELECT kategori.kategori, kue.id_kue, kue.nama_kue, kue.spesifikasi, kue.gambar, kue.harga FROM kategori RIGHT JOIN kue ON kategori.id_kategori = kue.id_kategori WHERE kategori='katalog' AND kue.status='on' ORDER BY RAND() ") or die(mysqli_error($mysqli));
+    $querykatalog = mysqli_query($mysqli, "SELECT kategori.kategori, kue.id_kue, kue.nama_kue, kue.spesifikasi, kue.gambar, kue.harga FROM kategori RIGHT JOIN kue ON kategori.id_kategori = kue.id_kategori WHERE kategori='katalog' AND kue.status='on' ") or die(mysqli_error($mysqli));
     while ($rowkatalog = mysqli_fetch_assoc($querykatalog)) {
         echo "<div class='col-lg-3 col-md-6 mb-4'>
             <div class='card h-100'>

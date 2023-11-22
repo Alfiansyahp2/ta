@@ -56,7 +56,7 @@ $totalbarang = count($keranjang);
 
 					?>
 					<li class="nav-item">
-						<a class="navbar-brand" href="?page=keranjang"><img src="images/cart.png" alt="logo-cart"
+						<a class="navbar-brand" href="index.php?page=keranjang"><img src="images/cart.png" alt="logo-cart"
 								style="background-color:red; padding:2px 10px; border-radius:3px;"></a>
 					</li>
 
@@ -97,7 +97,26 @@ $totalbarang = count($keranjang);
     </br><br><h1>DONAT</h1></br>
 
 <div class="row">
+<?php
 
+$page = @$_GET['page'];
+$action = @$_GET['action'];
+
+if ($page == "keranjang") {
+	include "keranjang.php";
+} else if ($page == "data_pemesan") {
+	include "data_pemesan.php";
+} else if ($page == "pesanan") {
+	if ($action == "") {
+		include "module/pesanan/list_pesanan.php";
+	} else if ($action == "detail") {
+		include "module/pesanan/detail.php";
+	} else if ($action == "konfirmasi_pembayaran") {
+		include "module/pesanan/konfirmasi_pembayaran.php";
+	} 
+}
+
+?>
     <div class="col-lg-12" ;>
         
 

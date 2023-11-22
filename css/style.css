@@ -2037,6 +2037,8 @@ textarea {
   padding: 17px 15px;
   position: absolute;
   right: 0;
+  position: absolute;
+  bottom: 0px;
 }
 .footer {
   left: 240px;

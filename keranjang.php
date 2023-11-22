@@ -39,7 +39,7 @@
 									<td>$nama_kue</td>
 									<td><input type='text' name='$id_kue' value='$quantity' class='update-quantity' style='width:30px;'/></td>
 									<td>".rupiah($harga)."</td>
-									<td>".rupiah($total)." <a href='hapus_item.php?id_kue=$id_kue'>X</a></td>
+									<td>".rupiah($total)." <a href='hapus_item.php?id_kue=$id_kue'>Hapus</a></td>
 									
 								</tr>
                     </tbody>";
