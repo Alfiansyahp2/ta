@@ -32,6 +32,11 @@ if ($stmt->fetch()) {
 
 $stmt->close();
 $mysqli->close();
+$redirect = $_GET['redirect'];
+if($redirect){
+    header("location: ".$_GET['redirect']);
+}else{
+    header("location: index.php");
+}
 
-header("location: index.php");
 ?>
