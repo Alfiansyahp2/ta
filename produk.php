@@ -73,6 +73,8 @@ $totalbarang = count($keranjang);
 						</li>
 				</ul>
 				<li class="nav-item">
+							<a class="nav-link" href="about.php">About Us</a>
+				<li class="nav-item">
 					<a class="nav-link" href="logout.php">Logout</a>
 				</li>
 
@@ -127,7 +129,7 @@ $totalbarang = count($keranjang);
 						echo "<div class='col-lg-3 col-md-6 mb-4'>
             <div class='card h-100'>
                 <img class='card-img-top' src='images/kue/{$rowkatalog['gambar']}' alt='gambar'>
-                <div class='card-body'>
+                <div class='card-body'> 
                     <h4 class='card-title' style='color: blue;'>{$rowkatalog['nama_kue']}</h4>
                     <h5>" . rupiah($rowkatalog['harga']) . "</h5>
                     <p class='card-text'>{$rowkatalog['spesifikasi']}</p>
