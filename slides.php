@@ -13,7 +13,7 @@
 
 <div class='row'>
     <?php
-    $querykatalog = mysqli_query($mysqli, "SELECT kategori.kategori, kue.id_kue, kue.nama_kue, kue.spesifikasi, kue.gambar, kue.harga FROM kategori RIGHT JOIN kue ON kategori.id_kategori = kue.id_kategori WHERE kategori='katalog' AND kue.status='on' ORDER BY RAND() LIMIT 9") or die(mysqli_error($mysqli));
+    $querykatalog = mysqli_query($mysqli, "SELECT kategori.kategori, kue.id_kue, kue.nama_kue, kue.spesifikasi, kue.gambar, kue.harga FROM kategori RIGHT JOIN kue ON kategori.id_kategori = kue.id_kategori WHERE kue.status='on' ORDER BY RAND() LIMIT 9") or die(mysqli_error($mysqli));
     while ($rowkatalog = mysqli_fetch_assoc($querykatalog)) {
         echo "<div class='col-lg-4 col-md-6 mb-4'>
             <div class='card h-100'>
@@ -24,7 +24,7 @@
                     <p class='card-text'>{$rowkatalog['spesifikasi']}</p>
                 </div>
                 <div class='card-footer'>
-                    <small class='text-muted'><a href='tambah_keranjang.php?id_kue={$rowkatalog['id_kue']}' class='btn btn-danger'>+Masukan Keranjang</a></small>
+                    <small class='text-muted'><a href='tambah_keranjang.php?id_kue={$rowkatalog['id_kue']}&redirect=index.php' class='btn btn-danger'>+Masukan Keranjang</a></small>
                 </div>
             </div>
         </div>";
