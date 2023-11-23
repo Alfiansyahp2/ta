@@ -34,7 +34,7 @@ $totalbarang = count($keranjang);
 	<script src="vendor/bootstrap/js/bootstrap.js" rel="stylesheet"></script>
 	<script src="vendor/jquery/jquery.slides.min.js" rel="stylesheet"></script>
 	<script>
-		$(function () {
+		$(function() {
 			$('#slides').slidesjs({
 				height: 350,
 				play: {
@@ -54,8 +54,7 @@ $totalbarang = count($keranjang);
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="?page="><img src="images/muslimah.jpg" alt="muslimah">Muslimah Bakery</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -68,8 +67,7 @@ $totalbarang = count($keranjang);
 
 					?>
 					<li class="nav-item">
-						<a class="navbar-brand" href="?page=keranjang"><img src="images/cart.png" alt="logo-cart"
-								style="background-color:red; padding:2px 10px; border-radius:3px;"></a>
+						<a class="navbar-brand" href="?page=keranjang"><img src="images/cart.png" alt="logo-cart" style="background-color:red; padding:2px 10px; border-radius:3px;"></a>
 					</li>
 
 					<?php
@@ -84,28 +82,22 @@ $totalbarang = count($keranjang);
 								<li><a href="donat.php">Donat</a></li>
 								<li><a href="kue.php">Kue Tart</a></li>
 						</li>
-					</ul> 
-					<li class="nav-item">
-						<a class="nav-link" href="logout.php">Logout</a>
-					</li>
-
-					<?php
-					} else {
-						?>
-					<!--<li class="nav-item">
-				<a class="nav-link" href="?page=login">Login</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="?page=register">Register</a>
-			</li>-->
-					<li class="nav-item">
-						<a class="nav-link" href="home.php">Home</a>
-
-					</li>
-					<?php
-					}
-					?>
 				</ul>
+				<li class="nav-item">
+					<a class="nav-link" href="logout.php">Logout</a>
+				</li>
+
+			<?php
+					} else {
+			?>
+				<li class="nav-item">
+					<a class="nav-link" href="home.php">Home</a>
+
+				</li>
+			<?php
+					}
+			?>
+			</ul>
 			</div>
 		</div>
 	</nav>
@@ -115,8 +107,8 @@ $totalbarang = count($keranjang);
 
 		<div class="row">
 
-			<div class="col-lg-3";>
-				
+			<div class="col-lg-3" ;>
+
 
 
 				<div class="list-group">
@@ -138,7 +130,7 @@ $totalbarang = count($keranjang);
 					?>
 					<?php
 					if ($user_id) { ?>
-					</br></br>
+						</br></br>
 						<img src="images/users/6.jpg" class="img-circle" alt="User Image" width="70" height="70" />
 						<h3>Selamat Datang,
 							<?php echo $data_user['username']; ?>
@@ -199,8 +191,7 @@ $totalbarang = count($keranjang);
 
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contohModalKecil">Kirim
 		Pesan</button>
-	<div class="modal fade" id="contohModalKecil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-		style="padding-top:600px;">
+	<div class="modal fade" id="contohModalKecil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="padding-top:600px;">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<?php include "chat.php"; ?>
@@ -216,7 +207,7 @@ $totalbarang = count($keranjang);
 
 	<script src="datatables/datatables.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function () {
+		$(document).ready(function() {
 			$('#datatables').DataTable();
 		});
 	</script>

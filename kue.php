@@ -33,17 +33,17 @@ $totalbarang = count($keranjang);
 	<script src="vendor/jquery/jquery-3.1.1.min.js" rel="stylesheet"></script>
 	<script src="vendor/bootstrap/js/bootstrap.js" rel="stylesheet"></script>
 	<script src="vendor/jquery/jquery.slides.min.js" rel="stylesheet"></script>
-	
+
 
 </head>
+
 <body>
 
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="?page="><img src="images/muslimah.jpg" alt="muslimah">Muslimah Bakery</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
@@ -56,8 +56,7 @@ $totalbarang = count($keranjang);
 
 					?>
 					<li class="nav-item">
-						<a class="navbar-brand" href="?page=keranjang"><img src="images/cart.png" alt="logo-cart"
-								style="background-color:red; padding:2px 10px; border-radius:3px;"></a>
+						<a class="navbar-brand" href="index.php?page=keranjang"><img src="images/cart.png" alt="logo-cart" style="background-color:red; padding:2px 10px; border-radius:3px;"></a>
 					</li>
 
 					<?php
@@ -72,102 +71,88 @@ $totalbarang = count($keranjang);
 								<li><a href="donat.php">Donat</a></li>
 								<li><a href="kue.php">Kue Tart</a></li>
 						</li>
-					</ul> 
-					<li class="nav-item">
-						<a class="nav-link" href="logout.php">Logout</a>
-					</li>
-
-					<?php
-					} else {
-						?>
-			
-					<li class="nav-item">
-						<a class="nav-link" href="home.php">Home</a>
-
-					</li>
-					<?php
-					}
-					?>
 				</ul>
+				<li class="nav-item">
+					<a class="nav-link" href="logout.php">Logout</a>
+				</li>
+
+			<?php
+					} else {
+			?>
+
+				<li class="nav-item">
+					<a class="nav-link" href="home.php">Home</a>
+
+				</li>
+			<?php
+					}
+			?>
+			</ul>
 			</div>
 		</div>
 	</nav>
-    	<!-- Page Content -->
+	<!-- Page Content -->
 	<div class="container">
-    </br><br><br><h1>Sabarrr</h1>
+		</br><br>
+		<h1>KUE TART</h1></br>
 
-<div class="row">
+		<div class="row">
+			<?php
 
-    <div class="col-lg-3";>
-        
+			$page = @$_GET['page'];
+			$action = @$_GET['action'];
 
+			if ($page == "keranjang") {
+				include "keranjang.php";
+			} else if ($page == "data_pemesan") {
+				include "data_pemesan.php";
+			} else if ($page == "pesanan") {
+				if ($action == "") {
+					include "module/pesanan/list_pesanan.php";
+				} else if ($action == "detail") {
+					include "module/pesanan/detail.php";
+				} else if ($action == "konfirmasi_pembayaran") {
+					include "module/pesanan/konfirmasi_pembayaran.php";
+				}
+			}
 
-        <div class="list-group">
-            <?php
-
-            $user_id = $mysqli->real_escape_string($user_id);
-
-            // Eksekusi query
-            $sql = "SELECT * FROM user WHERE user_id = '$user_id'";
-            $result = $mysqli->query($sql);
-
-            if (!$result) {
-                die("Error: " . $mysqli->error);
-            }
-
-            // Mengambil data
-            $data_user = $result->fetch_assoc();
-
-            ?>
-           
-
-        </div>
-
-    </div>
+			?>
+			<div class="col-lg-12" ;>
 
 
-    <div class="col-lg-9" style="margin:30px auto;">
+				<div class='row'>
+					<?php
+					$querydonat = mysqli_query($mysqli, "SELECT kategori.kategori, kue.id_kue, kue.nama_kue, kue.spesifikasi, kue.gambar, kue.harga FROM kategori RIGHT JOIN kue ON kategori.id_kategori = kue.id_kategori WHERE kategori='kue_tart' AND kue.status='on' ") or die(mysqli_error($mysqli));
+					while ($rowkatalog = mysqli_fetch_assoc($querydonat)) {
+						echo "<div class='col-lg-3 col-md-6 mb-4'>
+            <div class='card h-100'>
+                <img class='card-img-top' src='images/kue/{$rowkatalog['gambar']}' alt='gambar'>
+                <div class='card-body'>
+                    <h4 class='card-title' style='color: blue;'>{$rowkatalog['nama_kue']}</h4>
+                    <h5>" . rupiah($rowkatalog['harga']) . "</h5>
+                    <p class='card-text'>{$rowkatalog['spesifikasi']}</p>
+                </div>
+                <div class='card-footer'>
+                    <small class='text-muted'><a href='tambah_keranjang.php?id_kue={$rowkatalog['id_kue']}&redirect=kue.php' class='btn btn-danger'>+Masukan Keranjang</a></small>
+                </div>
+            </div>
+        </div>";
+					}
 
-        <?php
+					?>
+				</div>
 
-        $page = @$_GET['page'];
-        $action = @$_GET['action'];
-        if ($page == "register") {
-            include "register.php";
-        } else if ($page == "login") {
-            include "login.php";
-        } else if ($page == "lupa_pass") {
-            include "lupa_pass.php";
-        } else if ($page == "edit_user") {
-            include "edit_profil.php";
-        } else if ($page == "keranjang") {
-            include "keranjang.php";
-        } else if ($page == "data_pemesan") {
-            include "data_pemesan.php";
-        } else if ($page == "pesanan") {
-            if ($action == "") {
-                include "module/pesanan/list_pesanan.php";
-            } else if ($action == "detail") {
-                include "module/pesanan/detail.php";
-            } else if ($action == "konfirmasi_pembayaran") {
-                include "module/pesanan/konfirmasi_pembayaran.php";
-            } 
-        } 
+			</div>
 
-        ?>
+		</div>
 
-    </div>
+	</div>
 
-</div>
+	<!-- Footer -->
 
-</div>
-
-<!-- Footer -->
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contohModalKecil">Kirim
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contohModalKecil">Kirim
 		Pesan</button>
-	<div class="modal fade" id="contohModalKecil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-		style="padding-top:600px;">
+	<div class="modal fade" id="contohModalKecil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="padding-top:600px;">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<?php include "chat.php"; ?>
@@ -183,7 +168,7 @@ $totalbarang = count($keranjang);
 
 	<script src="datatables/datatables.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function () {
+		$(document).ready(function() {
 			$('#datatables').DataTable();
 		});
 	</script>

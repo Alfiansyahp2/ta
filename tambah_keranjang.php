@@ -1,13 +1,13 @@
 <?php
 
-	include_once("koneksi.php");
-	 
+include_once("koneksi.php");
+
 session_start();
 
 $id_kue = $_GET['id_kue'];
 $keranjang = isset($_SESSION['keranjang']) ? $_SESSION['keranjang'] : [];
 
- 
+
 
 $query = "SELECT nama_kue, gambar, harga FROM kue WHERE id_kue = ?";
 $stmt = $mysqli->prepare($query);
@@ -33,10 +33,8 @@ if ($stmt->fetch()) {
 $stmt->close();
 $mysqli->close();
 $redirect = $_GET['redirect'];
-if($redirect){
-    header("location: ".$_GET['redirect']);
-}else{
+if ($redirect) {
+    header("location: " . $_GET['redirect']);
+} else {
     header("location: index.php");
 }
-
-?>
