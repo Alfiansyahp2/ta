@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
--- http://www.phpmyadmin.net
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 15, 2018 at 08:18 AM
--- Server version: 5.6.26
--- PHP Version: 5.6.12
+-- Host: localhost:3306
+-- Generation Time: Nov 23, 2023 at 05:57 PM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ecommerce`
+-- Database: `kue`
 --
 
 -- --------------------------------------------------------
@@ -26,20 +27,19 @@ SET time_zone = "+00:00";
 -- Table structure for table `banner`
 --
 
-CREATE TABLE IF NOT EXISTS `banner` (
-  `banner_id` int(10) NOT NULL,
+CREATE TABLE `banner` (
+  `banner_id` int NOT NULL,
   `gambar` varchar(300) NOT NULL,
   `status` enum('on','off') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `banner`
 --
 
 INSERT INTO `banner` (`banner_id`, `gambar`, `status`) VALUES
-(1, 'f1.jpg', 'on'),
-(4, 'f3.jpg', 'on'),
-(5, 'f2.jpg', 'on');
+(1, 'f5.jpg', 'on'),
+(2, 'f6.jpg', 'on');
 
 -- --------------------------------------------------------
 
@@ -47,15 +47,15 @@ INSERT INTO `banner` (`banner_id`, `gambar`, `status`) VALUES
 -- Table structure for table `karyawan`
 --
 
-CREATE TABLE IF NOT EXISTS `karyawan` (
-  `id_karyawan` int(10) NOT NULL,
+CREATE TABLE `karyawan` (
+  `id_karyawan` int NOT NULL,
   `nama_karyawan` varchar(50) NOT NULL,
-  `no_telp` int(14) NOT NULL,
+  `no_telp` int NOT NULL,
   `alamat` text NOT NULL,
   `email` varchar(30) NOT NULL,
   `jabatan` varchar(25) NOT NULL,
   `status` enum('on','off') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `karyawan`
@@ -70,11 +70,11 @@ INSERT INTO `karyawan` (`id_karyawan`, `nama_karyawan`, `no_telp`, `alamat`, `em
 -- Table structure for table `kategori`
 --
 
-CREATE TABLE IF NOT EXISTS `kategori` (
-  `id_kategori` int(10) NOT NULL,
+CREATE TABLE `kategori` (
+  `id_kategori` int NOT NULL,
   `kategori` varchar(25) NOT NULL,
   `status` enum('on','off') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kategori`
@@ -82,7 +82,9 @@ CREATE TABLE IF NOT EXISTS `kategori` (
 
 INSERT INTO `kategori` (`id_kategori`, `kategori`, `status`) VALUES
 (1, 'Katalog', 'on'),
-(2, 'design', 'on');
+(2, 'donat', 'on'),
+(3, 'roti', 'on'),
+(4, 'kue_tart', 'on');
 
 -- --------------------------------------------------------
 
@@ -90,19 +92,23 @@ INSERT INTO `kategori` (`id_kategori`, `kategori`, `status`) VALUES
 -- Table structure for table `kirim`
 --
 
-CREATE TABLE IF NOT EXISTS `kirim` (
-  `id_kirim` int(10) NOT NULL,
-  `id_pesanan` int(10) NOT NULL,
-  `id_karyawan` int(10) NOT NULL,
+CREATE TABLE `kirim` (
+  `id_kirim` int NOT NULL,
+  `id_pesanan` int NOT NULL,
+  `id_karyawan` int NOT NULL,
   `status` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kirim`
 --
 
 INSERT INTO `kirim` (`id_kirim`, `id_pesanan`, `id_karyawan`, `status`) VALUES
-(1, 15, 1, 'Di Kirim');
+(1, 15, 1, 'Di Kirim'),
+(2, 22, 1, 'selesai'),
+(3, 23, 1, 'selesai'),
+(4, 26, 1, 'selesai'),
+(5, 3, 1, 'selesai');
 
 -- --------------------------------------------------------
 
@@ -110,13 +116,13 @@ INSERT INTO `kirim` (`id_kirim`, `id_pesanan`, `id_karyawan`, `status`) VALUES
 -- Table structure for table `konfirmasi_pembayaran`
 --
 
-CREATE TABLE IF NOT EXISTS `konfirmasi_pembayaran` (
-  `konfirmasi_id` int(10) NOT NULL,
-  `id_pesanan` int(10) NOT NULL,
+CREATE TABLE `konfirmasi_pembayaran` (
+  `konfirmasi_id` int NOT NULL,
+  `id_pesanan` int NOT NULL,
   `no_rek` varchar(25) NOT NULL,
   `nama_account` varchar(30) NOT NULL,
   `tgl_transfer` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `konfirmasi_pembayaran`
@@ -141,19 +147,24 @@ INSERT INTO `konfirmasi_pembayaran` (`konfirmasi_id`, `id_pesanan`, `no_rek`, `n
 -- Table structure for table `konfirmasi_pesanan`
 --
 
-CREATE TABLE IF NOT EXISTS `konfirmasi_pesanan` (
-  `id_konfirmasi_p` int(10) NOT NULL,
-  `id_pesanan` int(10) NOT NULL,
-  `id_karyawan` int(10) NOT NULL,
+CREATE TABLE `konfirmasi_pesanan` (
+  `id_konfirmasi_p` int NOT NULL,
+  `id_pesanan` int NOT NULL,
+  `id_karyawan` int NOT NULL,
   `lama_pesanan` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `konfirmasi_pesanan`
 --
 
 INSERT INTO `konfirmasi_pesanan` (`id_konfirmasi_p`, `id_pesanan`, `id_karyawan`, `lama_pesanan`) VALUES
-(1, 15, 1, '2 jam');
+(1, 15, 1, '2 jam'),
+(2, 22, 1, '2 hari'),
+(3, 22, 1, '2 hari'),
+(4, 26, 1, '2 hari'),
+(5, 2, 1, '2 hari'),
+(6, 3, 1, '7 hari');
 
 -- --------------------------------------------------------
 
@@ -161,12 +172,12 @@ INSERT INTO `konfirmasi_pesanan` (`id_konfirmasi_p`, `id_pesanan`, `id_karyawan`
 -- Table structure for table `kota`
 --
 
-CREATE TABLE IF NOT EXISTS `kota` (
-  `id_kota` int(10) NOT NULL,
+CREATE TABLE `kota` (
+  `id_kota` int NOT NULL,
   `nama_kota` varchar(50) NOT NULL,
-  `tarif` int(10) NOT NULL,
+  `tarif` int NOT NULL,
   `status` enum('on','off') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kota`
@@ -183,80 +194,47 @@ INSERT INTO `kota` (`id_kota`, `nama_kota`, `tarif`, `status`) VALUES
 -- Table structure for table `kue`
 --
 
-CREATE TABLE IF NOT EXISTS `kue` (
-  `id_kue` int(10) NOT NULL,
-  `id_kategori` int(10) NOT NULL,
+CREATE TABLE `kue` (
+  `id_kue` int NOT NULL,
+  `id_kategori` int NOT NULL,
   `nama_kue` varchar(70) NOT NULL,
   `spesifikasi` text NOT NULL,
   `gambar` varchar(300) NOT NULL,
-  `harga` int(10) NOT NULL,
+  `harga` int NOT NULL,
   `status` enum('on','off') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kue`
 --
 
 INSERT INTO `kue` (`id_kue`, `id_kategori`, `nama_kue`, `spesifikasi`, `gambar`, `harga`, `status`) VALUES
-(1, 1, 'double chocolate cake', '<p>baru coy lihat aja</p>', 'promo2.jpg', 235000, 'on'),
-(2, 1, 'american chocolate cake', '<p>di edit oleh admin</p>', 'promo1.jpg', 210000, 'on'),
-(3, 1, 'red velvet cake', '<p>ada yang masukin admin</p>', 'promo3.jpg', 235000, 'on'),
-(4, 1, 'praline cake', '<p>admin yang masukin</p>', 'promo4.jpg', 245000, 'on'),
-(5, 1, 'summer fruit cake', '<p>admin yang masukin</p>', 'promo5.jpg', 230000, 'on'),
-(6, 1, 'Tiramisu cake', '<p>admin yang masukin</p>', 'promo6.jpg', 230000, 'on'),
-(7, 1, 'opera cake', '<p>admin yang masukin</p>', 'promo7.jpg', 225000, 'on'),
-(8, 1, 'green tea cake', '<p>admin yang masukin</p>', 'promo9.jpg', 225000, 'on'),
-(9, 1, 'Triple Cake', '<p>admin yang masukin</p>', 'promo10.jpg', 225000, 'on'),
-(10, 1, 'Black Forest Cake', '<p>admin yang masukin</p>', 'promo11.jpg', 210000, 'on'),
-(11, 2, 'American Chocolate 20x20', '<p>admin yang masukin</p>', 'americacoklatwhole.jpg', 168000, 'on'),
-(12, 2, 'American Chocolate 30x30', '<p>admin yang masukin</p>', 'americacoklat30x30.jpg', 300000, 'on'),
-(13, 2, 'American Chocolate 30x40', '<p>admin yang masukin</p>', 'americacoklat30x40.jpg', 400000, 'on'),
-(14, 2, 'Banchokispie 20x20', '<p>admin yang masukin</p>', 'banchokispiwhole.jpg', 168000, 'on'),
-(15, 2, 'Banchokispie 30x30', '<p>admin yang masukin</p>', 'banchokispi30x30.jpg', 300000, 'on'),
-(16, 2, 'Banchokispie 30x40', '<p>admin yang masukin</p>', 'banchokispi30x40.jpg', 400000, 'on'),
-(17, 2, 'Black forest 20x20', '<p>admin yang masukin</p>', 'blackforestwhole.jpg', 168000, 'on'),
-(18, 2, 'Black forest 30x30', '<p>admin yang masukin</p>', 'blackforest30x30.jpg', 300000, 'on'),
-(19, 2, 'Black forest 30x40', '<p>admin yang masukin</p>', 'blackforest30x40.jpg', 400000, 'on'),
-(20, 2, 'Black & white chocolate 20x20', '<p>admin yang masukin</p>', 'blackwhitewhole.jpg', 192500, 'on'),
-(21, 2, 'Black & white chocolate 30x30', '<p>admin yang masukin</p>', 'blackwhite30x30.jpg', 350000, 'on'),
-(22, 2, 'Black & white chocolate 30x40', '<p>admin yang masukin</p>', 'blackwhite30x40.jpg', 450000, 'on'),
-(23, 2, 'Cassava Cake 20x20', '<p>admin yang masukin</p>', 'cassavacakewhole.jpg', 168000, 'on'),
-(24, 2, 'Cassava Cake 30x30', '<p>admin yang masukin</p>', 'cassavacake30x30.jpg', 300000, 'on'),
-(25, 2, 'Cassava Cake 30x40', '<p>admin yang masukin</p>', 'cassavacake30x40.jpg', 400000, 'on'),
-(26, 2, 'Dark cherry cheese 20x20', '<p>admin yang masukin</p>', 'darkcherywhole.jpg', 192500, 'on'),
-(27, 2, 'Dark cherry cheese 30x30', '<p>admin yang masukin</p>', 'darkchery30x30.jpg', 350000, 'on'),
-(28, 2, 'Dark cherry cheese 30x40', '<p>admin yang masukin</p>', 'darkchery30x40.jpg', 450000, 'on'),
-(29, 2, 'Double Chocolate (A) 20x20', '<p>admin yang masukin</p>', 'dobelcoklatAwhole.jpg', 192500, 'on'),
-(30, 2, 'Double Chocolate (A) 30x30', '<p>admin yang masukin</p>', 'dobelcoklatA30x30.jpg', 350000, 'on'),
-(31, 2, 'Double Chocolate (A) 30x40', '<p>admin yang masukin</p>', 'dobelcoklatA30x40.jpg', 450000, 'on'),
-(32, 2, 'Passion Chocolate 20x20', '<p>admin yang masukin</p>', 'passiencoklatwhole.jpg', 192500, 'on'),
-(33, 2, 'Passion Chocolate 30x30', '<p>admin yang masukin</p>', 'passiencoklat30x30.jpg', 350000, 'on'),
-(34, 2, 'Passion Chocolate 30x40', '<p>admin yang masukin</p>', 'passiencoklat30x40.jpg', 450000, 'on'),
-(35, 2, 'Pudding Cake 20x20', '<p>admin yang masukin</p>', 'puddingcakewhole.jpg', 168000, 'on'),
-(36, 2, 'Pudding Cake 30x30', '<p>admin yang masukin</p>', 'puddingcake30x30.jpg', 300000, 'on'),
-(37, 2, 'Pudding Cake 30x40', '<p>admin yang masukin</p>', 'puddingcake30x40.jpg', 400000, 'on'),
-(38, 2, 'Raspberry Layers Cake 20x20', '<p>admin yang masukin</p>', 'raspberrywhole.jpg', 192500, 'on'),
-(39, 2, 'Raspberry Layers Cake 30x30', '<p>admin yang masukin</p>', 'raspberry30x30.jpg', 350000, 'on'),
-(40, 2, 'Raspberry Layers Cake 30x40', '<p>admin yang masukin</p>', 'raspberry30x40.jpg', 450000, 'on'),
-(41, 2, 'Strawberry Cheese Cake 20x20', '<p>admin yang masukin</p>', 'strawberrychessewhole.jpg', 192500, 'on'),
-(42, 2, 'Strawberry Cheese Cake 30x30', '<p>admin yang masukin</p>', 'strawberrychesse30x30.jpg', 350000, 'on'),
-(43, 2, 'Strawberry Cheese Cake 30x40', '<p>admin yang masukin</p>', 'strawberrychesse30x40.jpg', 450000, 'on'),
-(44, 2, 'Summer Fruit Cake 20x20', '<p>admin yang masukin</p>', 'summerfruitwhole.jpg', 192500, 'on'),
-(45, 2, 'Summer Fruit Cake 30x30', '<p>admin yang masukin</p>', 'summerfruit30x30.jpg', 350000, 'on'),
-(46, 2, 'Summer Fruit Cake 30x40', '<p>admin yang masukin</p>', 'summerfruit30x40.jpg', 450000, 'on'),
-(47, 2, 'Tiramisu 20x20', '<p>admin yang masukin</p>', 'tiramisuwhole.jpg', 168000, 'on'),
-(48, 2, 'Tiramisu 30x30', '<p>admin yang masukin</p>', 'tiramisu30x30.jpg', 300000, 'on'),
-(49, 2, 'Tiramisu 30x40', '<p>admin yang masukin</p>', 'tiramisu30x40.jpg', 400000, 'on'),
-(50, 2, 'Tiramisu (A) 20x20', '<p>admin yang masukin</p>', 'tiramisuAwhole.jpg', 192500, 'on'),
-(51, 2, 'Tiramisu (A) 30x30', '<p>admin yang masukin</p>', 'tiramisuA30x30.jpg', 350000, 'on'),
-(52, 2, 'Tiramisu (A) 30x40', '<p>admin yang masukin</p>', 'tiramisuA30x40.jpg', 450000, 'on'),
-(53, 2, 'Tiramisu (B) 20x20', '<p>admin yang masukin</p>', 'tiramisuBwhole.jpg', 192500, 'on'),
-(54, 2, 'Tiramisu (B) 30x30', '<p>admin yang masukin</p>', 'tiramisuB30x30.jpg', 350000, 'on'),
-(55, 2, 'Tiramisu (B) 30x40', '<p>admin yang masukin</p>', 'tiramisuB30x40.jpg', 450000, 'on'),
-(56, 2, 'Triple Cake 20x20', '<p>admin yang masukin</p>', 'triplecakewhole.jpg', 168000, 'on'),
-(57, 2, 'Triple Cake 20x20', '<p>admin yang masukin</p>', 'triplecakewhole.jpg', 168000, 'on'),
-(58, 2, 'Triple Cake 30x30', '<p>admin yang masukin</p>', 'triplecake30x30.jpg', 300000, 'on'),
-(59, 2, 'Triple Cake 30x40', '<p>admin yang masukin</p>', 'triplecake30x40.jpg', 400000, 'on');
+(1, 1, 'Donat Messes', '', 'donat1.jpg', 5000, 'on'),
+(2, 1, 'Donat Salju', '', 'donat3.jpg', 5000, 'on'),
+(3, 1, 'Brownis Coklat', '', 'kue2.jpg', 5000, 'on'),
+(4, 3, 'Roti Pizza Abon', '', 'roti4.jpg', 5000, 'on'),
+(5, 2, 'Donat Messes Keju', '', 'donat4.jpg', 5000, 'on'),
+(6, 1, 'Roti Gulung', '', 'roti6.jpg', 20000, 'on'),
+(7, 1, 'Kue Tart 25x25', '', 'kue3.jpg', 75000, 'on'),
+(8, 1, 'Tart Mini', '', 'kue4.jpg', 20000, 'on'),
+(9, 1, 'Roti Abon Keju', '', 'roti7.jpg', 7000, 'on'),
+(10, 1, 'Roti Kepang Coklat', '', 'roti8.jpg', 10000, 'on'),
+(11, 4, 'Kue Tart 22x10', '', 'kue1.jpg', 150000, 'on'),
+(13, 1, 'Donat Messes', '', 'donat1.jpg', 5000, 'on'),
+(14, 2, 'Donat Salju', '', 'donat3.jpg', 5000, 'on'),
+(15, 4, 'Kue Tart 30x10', '', 'kue5.jpg', 120000, 'on'),
+(16, 4, 'Kue Tart 22x30', '', 'kue6.jpg', 180000, 'on'),
+(17, 4, 'Kue Tart 20x8', '', 'kue7.jpg', 140000, 'on'),
+(18, 4, 'Kue Tart 30x10', '', 'kue8.jpg', 130000, 'on'),
+(19, 4, 'Kue Tart 18x8', '', 'kue9.jpg', 120000, 'on'),
+(20, 4, 'Kue Tart 22x25', '', 'kue10.jpg', 140000, 'on'),
+(21, 4, 'Kue Tart 18x25', '', 'kue11.jpg', 145000, 'on'),
+(22, 3, 'Roti Messes', '', 'roti9.jpg', 10000, 'on'),
+(23, 3, 'Roti Pizza Keju', '', 'roti11.jpg', 10000, 'on'),
+(24, 3, 'Roti Gula', '', 'roti12.jpg', 7000, 'on'),
+(25, 3, 'Roti Pisang Coklat', '', 'roti13.jpg', 10000, 'on'),
+(26, 3, 'Roti Roll', '', 'roti14.jpg', 12000, 'on'),
+(27, 3, 'Roti Coklat Keju', '', 'roti16.jpg', 15000, 'on');
 
 -- --------------------------------------------------------
 
@@ -264,44 +242,26 @@ INSERT INTO `kue` (`id_kue`, `id_kategori`, `nama_kue`, `spesifikasi`, `gambar`,
 -- Table structure for table `pesanan`
 --
 
-CREATE TABLE IF NOT EXISTS `pesanan` (
-  `id_pesanan` int(10) NOT NULL,
-  `user_id` int(10) NOT NULL,
-  `id_kota` int(10) NOT NULL,
+CREATE TABLE `pesanan` (
+  `id_pesanan` int NOT NULL,
+  `user_id` int NOT NULL,
+  `id_kota` int NOT NULL,
   `nama_penerima` varchar(30) NOT NULL,
-  `no_telp` int(14) NOT NULL,
+  `no_telp` int NOT NULL,
   `alamat` text NOT NULL,
   `catatan` text NOT NULL,
   `tgl_pemesanan` date NOT NULL,
-  `status` tinyint(6) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+  `status` tinyint NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pesanan`
 --
 
 INSERT INTO `pesanan` (`id_pesanan`, `user_id`, `id_kota`, `nama_penerima`, `no_telp`, `alamat`, `catatan`, `tgl_pemesanan`, `status`) VALUES
-(1, 7, 1, 'kondil', 8218564, 'lorong baru', '', '2018-08-09', 0),
-(2, 7, 4, 'rizal', 9876544, 'uruguay', '', '2018-08-09', 0),
-(3, 7, 3, 'aliando', 2147483647, 'curug', '', '2018-08-09', 0),
-(4, 7, 4, 'alexa', 2147483647, 'bandung', '', '2018-08-09', 0),
-(5, 7, 3, 'kiki', 8766543, 'serang', '', '2018-08-09', 0),
-(6, 7, 1, 'gozali', 89767, 'kampung kembang', '', '2018-08-10', 0),
-(7, 10, 3, 'ari', 64575685, 'bandung', '', '2018-08-10', 0),
-(8, 10, 1, 'ergi', 6798066, 'cimuncang', '', '2018-08-10', 0),
-(9, 10, 1, 'arga', 4262626, 'cijantung', '', '2018-08-10', 0),
-(10, 10, 1, 'sueb', 2147483647, 'tj harapan', '', '2018-08-10', 0),
-(11, 10, 1, 'kokom', 5252141, 'serang timur', '', '2018-08-10', 0),
-(12, 10, 1, 'keke', 989786543, 'curug', '', '2018-08-10', 0),
-(13, 10, 1, 'azki', 97655432, 'curug serang', '', '2018-08-10', 3),
-(14, 10, 1, 'kokok', 2446778, 'sari asih', '', '2018-08-10', 2),
-(15, 1, 1, 'diki', 9876543, 'curug', '', '2018-08-11', 2),
-(16, 1, 3, 'aldo bareto', 8766543, 'jl ciwaru raya', '<p>tambah coklat nya jadi dua kali lipat, warna ganti dengan warna pink</p>', '2018-08-19', 1),
-(17, 7, 1, 'hidayat', 98765432, 'cigoong', '<p>tambah lilin</p>', '0000-00-00', 1),
-(18, 7, 1, 'solok', 907865454, 'cigoong masjid', '<p>cukup</p>', '0000-00-00', 0),
-(19, 1, 1, 'marpuah', 36565, 'nangka bugang', '<p>-</p>', '2018-08-20', 1),
-(20, 1, 1, 'nanang', 4536564, 'kp limpar', '<p>tambah keju yang banyak</p>', '2018-08-20', 1),
-(21, 1, 4, 'jati', 7986654, 'pandean', '<p>tt</p>', '2018-09-14', 1);
+(1, 5, 1, 'wahyu', 1234, 'Balung', '<p>123</p>', '2023-11-21', 0),
+(2, 2, 1, 'afni', 822, 'ambulu', '<p>yang enak ya</p>', '2023-11-21', 1),
+(3, 2, 1, 'afni', 2147483647, 'ambulu', '<p>123</p>', '2023-11-21', 2);
 
 -- --------------------------------------------------------
 
@@ -309,11 +269,11 @@ INSERT INTO `pesanan` (`id_pesanan`, `user_id`, `id_kota`, `nama_penerima`, `no_
 -- Table structure for table `pesanan_detail`
 --
 
-CREATE TABLE IF NOT EXISTS `pesanan_detail` (
-  `id_pesanan` int(10) NOT NULL,
-  `id_kue` int(10) NOT NULL,
-  `qty` tinyint(3) NOT NULL,
-  `harga` int(10) NOT NULL
+CREATE TABLE `pesanan_detail` (
+  `id_pesanan` int NOT NULL,
+  `id_kue` int NOT NULL,
+  `qty` tinyint NOT NULL,
+  `harga` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -340,7 +300,28 @@ INSERT INTO `pesanan_detail` (`id_pesanan`, `id_kue`, `qty`, `harga`) VALUES
 (18, 3, 1, 235000),
 (19, 5, 1, 230000),
 (20, 1, 1, 235000),
-(21, 9, 1, 225000);
+(21, 9, 1, 225000),
+(22, 6, 1, 230000),
+(22, 5, 2, 230000),
+(22, 3, 1, 235000),
+(23, 1, 1, 235000),
+(23, 9, 1, 225000),
+(24, 65, 1, 20000),
+(24, 68, 1, 7000),
+(25, 65, 1, 20000),
+(25, 60, 1, 5000),
+(26, 63, 1, 5000),
+(26, 60, 2, 5000),
+(26, 67, 1, 20000),
+(6, 2, 1, 5000),
+(6, 3, 1, 5000),
+(7, 8, 1, 20000),
+(2, 9, 1, 7000),
+(2, 3, 1, 5000),
+(2, 2, 1, 5000),
+(3, 7, 1, 75000),
+(3, 11, 1, 150000),
+(3, 8, 1, 20000);
 
 -- --------------------------------------------------------
 
@@ -348,13 +329,13 @@ INSERT INTO `pesanan_detail` (`id_pesanan`, `id_kue`, `qty`, `harga`) VALUES
 -- Table structure for table `shout_box`
 --
 
-CREATE TABLE IF NOT EXISTS `shout_box` (
-  `id` int(11) NOT NULL,
+CREATE TABLE `shout_box` (
+  `id` int NOT NULL,
   `user` varchar(60) NOT NULL,
   `message` varchar(100) NOT NULL,
   `date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ip_address` varchar(40) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shout_box`
@@ -373,8 +354,8 @@ INSERT INTO `shout_box` (`id`, `user`, `message`, `date_time`, `ip_address`) VAL
 -- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` int(10) NOT NULL,
+CREATE TABLE `user` (
+  `user_id` int NOT NULL,
   `nama_lengkap` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `no_telp` varchar(15) NOT NULL,
@@ -382,22 +363,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(40) NOT NULL,
   `level` enum('pembeli','admin') NOT NULL,
   `status` enum('on','off') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `nama_lengkap`, `email`, `no_telp`, `username`, `password`, `level`, `status`) VALUES
-(1, 'diki saputra', 'diki@gmail.com', '08987881597', 'diki', '43b93443937ea642a9a43e77fd5d8f77', 'pembeli', 'on'),
-(2, 'admin', 'admin@gmail.com', '08987881597', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'on'),
-(4, 'yesa', 'dikisaputra396@gmail.com', '08987881597', 'yesa', '10db7e8adb50118875b3e26311c7b962', 'pembeli', 'on'),
-(5, 'peja sanjaya', 'dikimista@gmail.com', '08987881597', 'peja', '55260b963931530149f22423414a5848', 'pembeli', 'on'),
-(6, 'ifan tri suligar ', 'dikitak@gmail.com', '0987422222', 'ifan', 'edbb968ec5ae3f6f62f93b28b8089a3e', 'pembeli', 'on'),
-(7, 'sulhi', 'coyi@gmail.com', '66456456', 'sulhi', '32d534eb845cc86188bcc279c8a73f22', 'pembeli', 'on'),
-(8, 'tri satya', 'dikimistak@gmail.com', '0987422222', 'tri', 'd2cfe69af2d64330670e08efb2c86df7', 'pembeli', 'on'),
-(9, 'hidayat', 'coysulhi@gmail.com', '78767', 'sulhi', '32d534eb845cc86188bcc279c8a73f22', 'pembeli', 'on'),
-(10, 'riazki', 'riazkidikianugrah@gmail.com', '7982738', 'riazki', '6bde5ba43cc7385141b62d23e183ffa1', 'pembeli', 'on');
+(1, 'admin', 'admin@gmail.com', '08987881597', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'on'),
+(2, 'Mey Nur Afni', 'afni@gmail.com', '12345', 'Afni', '202cb962ac59075b964b07152d234b70', 'pembeli', 'on'),
+(3, 'alya', 'alya@gmail.com', '12345', 'Alya', '202cb962ac59075b964b07152d234b70', 'pembeli', 'on'),
+(4, 'Alfian', 'alfian@gmail.com', '12345', 'Alfian', '202cb962ac59075b964b07152d234b70', 'pembeli', 'on'),
+(5, 'Wahyu', 'wayu@gmail.com', '0987654321', 'wahyu', '202cb962ac59075b964b07152d234b70', 'pembeli', 'on');
 
 --
 -- Indexes for dumped tables
@@ -477,57 +454,69 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
-  MODIFY `banner_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `banner_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id_karyawan` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_karyawan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id_kategori` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `kirim`
 --
 ALTER TABLE `kirim`
-  MODIFY `id_kirim` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_kirim` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `konfirmasi_pembayaran`
 --
 ALTER TABLE `konfirmasi_pembayaran`
-  MODIFY `konfirmasi_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `konfirmasi_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `konfirmasi_pesanan`
 --
 ALTER TABLE `konfirmasi_pesanan`
-  MODIFY `id_konfirmasi_p` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_konfirmasi_p` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `kota`
 --
 ALTER TABLE `kota`
-  MODIFY `id_kota` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_kota` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `kue`
 --
 ALTER TABLE `kue`
-  MODIFY `id_kue` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
+  MODIFY `id_kue` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id_pesanan` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `id_pesanan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `shout_box`
 --
 ALTER TABLE `shout_box`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
