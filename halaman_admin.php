@@ -220,7 +220,7 @@ if ($user_id === null || $level === null) {
 												$query = "DELETE FROM kategori WHERE id_kategori = '$id_kategori'";
 												
 												if ($mysqli->query($query)) {
-													echo '<script type="text/javascript">window.location.href="../kue/halaman_admin.php?page=kategori";</script>';
+													echo '<script type="text/javascript">window.location.href="halaman_admin.php?page=kategori";</script>';
 												} else {
 													echo "Gagal menghapus data: " . $mysqli->error;
 												}
@@ -239,7 +239,7 @@ if ($user_id === null || $level === null) {
 												$query = "DELETE FROM karyawan WHERE id_karyawan = '$id_karyawan'";
 												
 												if ($mysqli->query($query)) {
-													echo '<script type="text/javascript">window.location.href="../kue/halaman_admin.php?page=karyawan";</script>';
+													echo '<script type="text/javascript">window.location.href="halaman_admin.php?page=karyawan";</script>';
 												} else {
 													echo "Gagal menghapus data: " . $mysqli->error;
 												}
