@@ -119,6 +119,7 @@ if ($user_id === null || $level === null) {
 								<li><a href="?page=karyawan">Karyawan</a></li>
 								<li><a href="?page=user">user</a></li>
                                 <li><a href="?page=banner">Banner</a></li>
+                                <li><a href="?page=kota">Kota</a></li>
                                 <li><a href="?page=kategori">Kategori</a></li>	
                                 <li><a href="?page=kue">Kue</a></li>	
                             </ul>
@@ -203,6 +204,24 @@ if ($user_id === null || $level === null) {
 												$query = "DELETE FROM user WHERE user_id = '$user_id'";
 												if ($mysqli->query($query)) {
 													echo '<script type="text/javascript">window.location.href="../kue/halaman_admin.php?page=user";</script>';
+												} else {
+													echo "Gagal menghapus data: " . $mysqli->error;
+												}
+											}
+										}
+                                        else if ($page == "kota") {
+											if ($action == "") {
+												include "module/kota/list_kota.php";
+											} elseif ($action == "tambah_kota") {
+												include "module/kota/tambah_kota.php";
+											} elseif ($action == "edit") {
+												include "module/kota/edit_kota.php";
+											} elseif ($action == "hapus") {
+												$id_kota = @$_GET['id_kota'];
+												$query = "DELETE FROM kota WHERE id_kota = '$id_kota'";
+												
+												if ($mysqli->query($query)) {
+													echo '<script type="text/javascript">window.location.href="../kue/halaman_admin.php?page=kota";</script>';
 												} else {
 													echo "Gagal menghapus data: " . $mysqli->error;
 												}
