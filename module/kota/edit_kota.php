@@ -21,7 +21,7 @@
                 <div class="basic-form">
                     <form action="" method="post">
                         <div class="form-group">
-                            <label>Nama Kota</label>
+                            <label>Nama Kecamatan</label>
                             <input type="text" name="nama" class="form-control" value="<?php echo $data['nama_kota']; ?>"  required>
                         </div>
 						<div class="form-group">

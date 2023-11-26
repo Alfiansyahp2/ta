@@ -13,7 +13,7 @@ if ($simpan_kota) {
     if ($insertKotaQuery) {
         ?>
         <script type="text/javascript"> alert("tambah Kota baru berhasil");
-            window location.href="../../halaman_admin.php?page=kota";
+            window.location.href="../../halaman_admin.php?page=kota";
         </script>
         <?php
     } else {

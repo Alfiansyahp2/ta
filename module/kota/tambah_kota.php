@@ -1,14 +1,14 @@
     
  <div class="col-lg-8">
 		<div class="card-title">
-            <h4>Form Tambah Kota</h4>
+            <h4>Form Tambah Kecamatan</h4>
 
         </div>
             <div class="card-body">
                 <div class="basic-form">
                     <form action="module/kota/proses_tkota.php" method="post">
                         <div class="form-group">
-                            <label>Nama Kota</label>
+                            <label>Nama Kecamatan</label>
                             <input type="text" name="nama" class="form-control" placeholder="Nama Kota" required>
                         </div>
 						<div class="form-group">
