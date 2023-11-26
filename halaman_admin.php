@@ -119,7 +119,7 @@ if ($user_id === null || $level === null) {
 								<li><a href="?page=karyawan">Karyawan</a></li>
 								<li><a href="?page=user">user</a></li>
                                 <li><a href="?page=banner">Banner</a></li>
-                                <li><a href="?page=kota">Kota</a></li>
+                                <li><a href="?page=kota">Kecamatan</a></li>
                                 <li><a href="?page=kategori">Kategori</a></li>	
                                 <li><a href="?page=kue">Kue</a></li>	
                             </ul>
