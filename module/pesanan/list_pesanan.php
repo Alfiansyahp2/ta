@@ -29,7 +29,8 @@ if ($resultPesanan->num_rows == 0) {
 
     while ($row = $resultPesanan->fetch_assoc()) {
         if ($level == "admin") {
-            $adminbutton = "<a class='btn btn-success' href='halaman_admin.php?page=pesanan&module=pesanan&action=status&id_pesanan=$row[id_pesanan]'>Update Status</a>";
+            $diskon = "<a class='btn btn-success' href='halaman_admin.php?page=pesanan&module=pesanan&action=diskon&id_pesanan=$row[id_pesanan]'>Diskon</a>";
+            $adminbutton = "<a class='btn btn-success' href='halaman_admin.php?page=pesanan&module=pesanan&action=status&id_pesanan=$row[id_pesanan]'>Status</a>";
             $konfirmasi = "<a class='btn btn-success' href='halaman_admin.php?page=pesanan&module=pesanan&action=konfirmasi&id_pesanan=$row[id_pesanan]'>Konfirmasi</a>";
             $kirim = "<a class='btn btn-success' href='halaman_admin.php?page=pesanan&module=pesanan&action=kirim&id_pesanan=$row[id_pesanan]'>Kirim</a>";
         }
@@ -41,6 +42,7 @@ if ($resultPesanan->num_rows == 0) {
                 <td>$row[nama_lengkap]</td>
                 <td>
                     <a class='btn btn-success' href='index.php?page=pesanan&module=pesanan&action=detail&id_pesanan=$row[id_pesanan]'>Detail</a>
+                    $diskon
                     $adminbutton
                     $konfirmasi
                     $kirim
