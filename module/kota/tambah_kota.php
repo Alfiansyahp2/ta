@@ -7,7 +7,7 @@
             <div class="card-body">
                 <div class="basic-form">
                     <form action="module/kota/proses_tkota.php" method="post">
-                        <div class="form-group">git 
+                        <div class="form-group"> 
                             <label>Nama Kecamatan</label>
                             <input type="text" name="nama" class="form-control" placeholder="Nama Kota" required>
                         </div>
