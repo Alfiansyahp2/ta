@@ -53,7 +53,7 @@ if ($edit) {
     if ($updateQuery->execute()) {
         ?>
         <script type="text/javascript"> alert("data Kategori berhasil diedit");
-            window.location.href="../gawekue/halaman_admin.php?page=kategori";
+            window.location.href="../ta/halaman_admin.php?page=kategori";
         </script>
         <?php
     } else {

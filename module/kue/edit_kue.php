@@ -113,7 +113,7 @@ if ($edit) {
                 ?>
                 <script type="text/javascript"> 
                     alert("data berhasil diedit");
-                    window location.href="../../halaman_admin.php?page=kue";
+                    window.location.href="../../halaman_admin.php?page=kue";
                 </script>
                 <?php
             } else {
