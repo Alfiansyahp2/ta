@@ -14,7 +14,7 @@
 
  <div class="col-lg-8">
 		<div class="card-title">
-            <h4>Form Edit Kota</h4>
+            <h4>Form Edit Kecamatan</h4>
 
         </div>
             <div class="card-body">
@@ -43,28 +43,29 @@
 
 </div>
 <?php
-if($_POST){
+if (isset($_POST['edit_kota'])) {
     $nama = $_POST['nama'];
     $tarif = $_POST['tarif'];
     $status = $_POST['status'];
-    
-    $edit_kota = $_POST['edit_kota'];
-    
-    if ($edit_kota) {
-        $query = "UPDATE kota SET nama_kota='$nama', tarif='$tarif', status='$status' WHERE id_kota='$id_kota'";
-        
-        if ($mysqli->query($query)) {
-            ?>
-            <script type="text/javascript"> 
-                alert("Data Kota berhasil diedit");
-                window.location.href="../kue/halaman_admin.php?page=kota";
-            </script>
-            <?php
-        } else {
-            echo "Gagal mengedit data: " . $mysqli->error;
-        }
+
+    $updateQuery = $mysqli->prepare("UPDATE kota SET nama_kota=?, tarif=?, status=? WHERE id_kota=?");
+
+    // Bind the parameters
+    $updateQuery->bind_param("sssi", $nama, $tarif, $status, $id_kota);
+
+    if ($updateQuery->execute()) {
+        ?>
+        <script type="text/javascript"> alert("Data kota berhasil diedit");
+            window.location.href="../ta/halaman_admin.php?page=kota";
+        </script>
+        <?php
+    } else {
+        ?>
+        <script type="text/javascript"> alert("Update kota failed: <?php echo $mysqli->error; ?>");
+        </script>
+        <?php
     }
+
+    $updateQuery->close();
 }
-
-
 ?>

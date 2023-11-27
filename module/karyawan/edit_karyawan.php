@@ -70,7 +70,7 @@ if ($edit) {
     if ($updateQuery->execute()) {
         ?>
         <script type="text/javascript"> alert("data karyawan berhasil diedit");
-            window.location.href="../gawekue/halaman_admin.php?page=karyawan";
+            window.location.href="../ta/halaman_admin.php?page=karyawan";
         </script>
         <?php
     } else {

@@ -8,20 +8,23 @@ $status = @$_POST['status'];
 $simpan_kota = @$_POST['simpan_kota'];
 
 if ($simpan_kota) {
-    $insertKotaQuery = $mysqli->query("INSERT INTO kota (nama_kota, tarif, status) VALUES ('$nama', $tarif, $status)");
+    $insertKotaQuery = $mysqli->prepare("INSERT INTO kota (nama_kota, tarif, status) VALUES (?, ?, ?)");
+    $insertKotaQuery->bind_param("sds", $nama, $tarif, $status);
 
-    if ($insertKotaQuery) {
+    if ($insertKotaQuery->execute()) {
         ?>
-        <script type="text/javascript"> alert("tambah Kota baru berhasil");
+        <script type="text/javascript"> alert("Tambah Kota baru berhasil");
             window.location.href="../../halaman_admin.php?page=kota";
         </script>
         <?php
     } else {
         ?>
-        <script type="text/javascript"> alert("Insert into kota failed: <?php echo $mysqli->error; ?>");
+        <script type="text/javascript"> alert("Insert into kota failed: <?php echo $insertKotaQuery->error; ?>");
         </script>
         <?php
     }
+
+    $insertKotaQuery->close();
 } else {
     echo "gagal";
 }
