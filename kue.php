@@ -124,7 +124,7 @@ $totalbarang = count($keranjang);
 
 				<div class='row'>
 					<?php
-					$querydonat = mysqli_query($mysqli, "SELECT kategori.kategori, kue.id_kue, kue.nama_kue, kue.spesifikasi, kue.gambar, kue.harga FROM kategori RIGHT JOIN kue ON kategori.id_kategori = kue.id_kategori WHERE kategori='kue_tart' AND kue.status='on' ") or die(mysqli_error($mysqli));
+					$querydonat = mysqli_query($mysqli, "SELECT kategori.kategori, kue.id_kue, kue.nama_kue, kue.spesifikasi, kue.gambar, kue.harga FROM kategori RIGHT JOIN kue ON kategori.id_kategori = kue.id_kategori WHERE kategori='kue_tart' AND kue.status='on'  ORDER BY kue.id_kue DESC; ") or die(mysqli_error($mysqli));
 					while ($rowkatalog = mysqli_fetch_assoc($querydonat)) {
 						echo "<div class='col-lg-3 col-md-6 mb-4'>
             <div class='card h-100'>
