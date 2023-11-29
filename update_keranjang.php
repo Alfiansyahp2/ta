@@ -24,5 +24,5 @@
 
 	$_SESSION["keranjang"] = $keranjang;
 
-	var_dump($keranjang, $id_kue, $value);
+	var_dump($keranjang, $id_kue, $value);
 ?>
