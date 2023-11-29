@@ -11,6 +11,7 @@
 	$button = $_POST['button'];
 	$konfirmasi = $_POST['konfirmasi'];
 	$kirimp = $_POST['kirimp'];
+	$diskon = $_POST['diskon'];
 	
 	if($kirim){
 	
@@ -72,6 +73,26 @@
 		$status = $_POST["status"];
 
 		$insertKirimQuery = $mysqli->query("INSERT INTO kirim (id_pesanan, id_karyawan, status) VALUES ('$id_pesanan', '$karyawan', '$status')");
+
+		if ($insertKirimQuery) {
+			?>
+			<script type="text/javascript"> alert("berhasil");
+				window.location.href="../../halaman_admin.php?page=pesanan";
+			</script>
+			<?php
+		} else {
+			// Handle the case where the query failed
+			echo "Insert into kirim failed: " . $mysqli->error;
+		}
+
+
+	}
+
+	if($diskon){
+
+		$total = $_POST["total_harga"];
+
+		$insertKirimQuery = $mysqli->query("UPDATE pesanan SET total_harga='$total' WHERE id_pesanan='$id_pesanan'");
 
 		if ($insertKirimQuery) {
 			?>

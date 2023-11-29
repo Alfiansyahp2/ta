@@ -9,7 +9,20 @@
 			<input class="form-control" type="date" name="tgl2"> 
         </div>
 		
-		<input type="submit" class="btn btn-primary" name="lihat" value="Lihat">
+        <style>
+    .btn-container {
+        margin-right: 30px; /* Atur margin kanan sesuai kebutuhan */
+    }
+    </style>
+
+    <div class="btn-container">
+      <input type="submit" class="btn btn-primary" name="lihat" value="Lihat">
+    </div>
+
+    <div class="btn-container">
+      <input type="submit" class="btn btn-primary" name="cetak" value="Cetak">
+    </div>
+
 		
     </form>
     <br><br></div>
@@ -23,9 +36,10 @@
                     <thead>
                         <tr>
 							<th>NO</th>
+							<th>tanggal transfer</th>
                             <th>Nama akun</th>
                             <th>nomer rekening</th>
-                            <th>tanggal transfer</th>
+							<th>total pesanan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,7 +55,7 @@
 										<td><?php echo $no++; ?></td>
 										<td><?php echo $data['nama_account']; ?></td>
 										<td><?php echo $data['no_rek']; ?></td>
-                    <td><?php echo date('d-m-Y', strtotime($data['tanggal_transfer'])); ?></td>
+                    					<td><?php echo date('d-m-Y', strtotime($data['tanggal_transfer'])); ?></td>
 
 										<!-- <td>
 											<div class="btn-group">

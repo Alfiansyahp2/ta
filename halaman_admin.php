@@ -132,7 +132,7 @@ if ($user_id === null || $level === null) {
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Laporan</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="?page=laporan_bayar">Laporan Pembayaran</a></li>
-                                <li><a href="?page=laporan_pesan">Laporan Pemesanan</a></li>
+                                <!-- <li><a href="?page=laporan_pesan">Laporan Pemesanan</a></li> -->
                             </ul>
                         </li>
                     </ul>
@@ -287,6 +287,9 @@ if ($user_id === null || $level === null) {
 										else if($page == "pesanan"){
 											if ($action==""){
 												include "module/pesanan/list_pesanan.php";
+										}
+											else if ($action=="diskon"){
+												include "module/pesanan/diskon.php";
 										}
 											else if ($action=="status"){
 												include "module/pesanan/status.php";
