@@ -96,7 +96,7 @@ $totalbarang = count($keranjang);
                         <div class="detail-box" style="margin-top: 100px; ">
                             <h1><span style="color: #f87503; font-size:50px;">Muslimah Bakery</span></h1>
                             <p style="font-size:22px;"><b>Menyediakan berbagai macam roti dan kue dengan</br> harga dan kualitas yang terjamin</b></p>
-                            <div class="btn-box" style="margin-top: 30px;">
+                            <div class="btn-box" style="margin-top: 30px; color:black;">
                                 <a href="index.php?page=register" class="btn" style="background-color : #99CCFF; color:blue;"><b>Beli Sekarang</b></a>
                             </div>
                         </div>
@@ -123,7 +123,7 @@ $totalbarang = count($keranjang);
                     <p class='card-text'>{$rowkatalog['spesifikasi']}</p>
                 </div>
                 <div class='card-footer'>
-                    <small class='text-muted'><a href='tambah_keranjang.php?id_kue={$rowkatalog['id_kue']}&redirect=index.php' class='btn btn-danger'>+Masukan Keranjang</a></small>
+                    <small class='text-muted'><a href='tambah_keranjang.php?id_kue={$rowkatalog['id_kue']}&redirect=home.php' class='btn btn-danger'>+Masukan Keranjang</a></small>
                 </div>
             </div>
         </div>";
