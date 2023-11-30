@@ -61,7 +61,6 @@
 							<td><?php echo date('d-m-Y', strtotime($data['tanggal_transfer'])); ?></td>
 							<td><?php echo $data['total_pembayaran']; ?></td>
 							<td>
-								<!-- Tambahkan tag gambar untuk menampilkan bukti pembayaran -->
 								<?php if (!empty($data['bukti_pembayaran'])) : ?>
 									<img src="<?php echo $data['bukti_pembayaran']; ?>" alt="Bukti Pembayaran" style="max-width: 100px;">
 								<?php else : ?>
