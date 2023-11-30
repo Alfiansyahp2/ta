@@ -1,4 +1,4 @@
-<div class="col-lg-8" style="margin-left:85px;">
+<div class="col-lg-8" style="margin-top: 50px; margin-bottom: 50px;">
     <div class="card">
         <div class="card-title">
             <h4>Halaman Registrasi</h4>
@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <label>Email</label>
                         <input type="email" name="email" class="form-control" placeholder="Email" required>
-                    </div> 
+                    </div>
                     <div class="form-group">
                         <label>No Telepon/Handphone</label>
                         <input type="number" name="telp" class="form-control" placeholder="No Telepon" required>
@@ -26,15 +26,19 @@
                         <label>Password</label>
                         <input type="password" name="password" class="form-control" placeholder="Password" required>
                     </div>
-                    <input type="submit" class="btn btn-success" name="daftar" value="Daftar">
-                    <a href="index.php?page=login" class="btn btn-success " >Login</a>
+                    <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                        <input type="submit" class="btn btn-success" name="daftar" value="Daftar">
+                        <span style="margin-top: 10px;">Sudah punya akun?</span>
+                        <a href="index.php?page=login" class="btn btn-success" style="margin-top: 10px;">Login</a>
                 </form>
             </div>
+            </form>
         </div>
     </div>
 </div>
+</div>
 
-<?php 
+<?php
 
 if (isset($_POST['daftar'])) {
     $nama = @$_POST['nama'];
@@ -62,7 +66,7 @@ if (isset($_POST['daftar'])) {
             echo "Error: " . $insertUserQuery . "<br>" . $mysqli->error;
         }
     }
-    
+
     // Tutup mysqli
     $mysqli->close();
 }
