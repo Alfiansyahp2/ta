@@ -87,7 +87,7 @@ $totalbarang = count($keranjang);
 
     <section class="slider_section ">
         <div class="slider_bg_box">
-            <img src="images/bg.jpg" alt="" style="width: 100%; height: 258%; object-fit: cover;">
+            <img src="images/bg.jpg" alt="" style="width: 100%; height: 240%; object-fit: cover;">
         </div>
         <div id="customCarousel1" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -107,7 +107,7 @@ $totalbarang = count($keranjang);
     </section>
 
     <div class="container">
-        <div class="col-md-12 mx-auto " style="margin-top:500px">
+        <div class="col-md-12 mx-auto " style="margin-top:480px">
             <div class="heading_container heading_center">
                 <h1>Our <span>Products</span></h1>
                 <div class='row'>
