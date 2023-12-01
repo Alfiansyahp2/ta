@@ -42,6 +42,8 @@
 					<th>Nomor Rekening</th>
 					<th>Tanggal Pembayaran</th>
 					<th>total pesanan</th>
+					<th>Total Harga</th>
+					<th></th>
 					<th>Bukti Pembayaran</th>
 				</tr>
 			</thead>
@@ -58,13 +60,12 @@
 							<td><?php echo $no++; ?></td>
 							<td><?php echo $data['nama_account']; ?></td>
 							<td><?php echo $data['no_rek']; ?></td>
-<<<<<<< HEAD
 							<td><?php echo date('d-m-Y', strtotime($data['tgl_transfer'])); ?></td>
 							<td><?php echo $data['total_pembayaran']; ?></td>
-=======
+
 							<td><?php echo date('d-m-Y', strtotime($data['tanggal_transfer'])); ?></td>
 							<td><?php echo $data['total_harga']; ?></td>
->>>>>>> 4356d6e274b35d39e9be513e4534f7aee35d1b1f
+
 							<td>
 								<?php if (!empty($data['bukti_pembayaran'])) : ?>
 									<img src="images/bukti/<?php echo $data['bukti_pembayaran']; ?>" alt="Bukti Pembayaran" style="max-width: 100px;">
