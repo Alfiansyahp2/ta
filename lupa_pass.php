@@ -1,4 +1,4 @@
-<div class="col-lg-8" style="margin-left:85px;">
+<div class="col-lg-8" style="margin-top: 180px; margin-bottom: 180px;">
     <div class="card">
         <div class="card-title">
             <h4>Halaman Lupa Password</h4>

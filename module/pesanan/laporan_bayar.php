@@ -1,7 +1,7 @@
 <div class="container">
 	<h3>Laporan Pembayaran</h3><br>
 
-	<form class="form-inline my-2 my-lg-0 mr-lg-2" action=".../ta/module/pesanan/pdf/cetak_bayar.php" method="post">
+	<form class="form-inline my-2 my-lg-0 mr-lg-2" action="module/pesanan/pdf/cetak_bayar.php" method="post">
 
 		<div class="input-group">
 			<label for="tgl" class="col-sm-2 control-label">Tgl</label>
@@ -58,11 +58,11 @@
 							<td><?php echo $no++; ?></td>
 							<td><?php echo $data['nama_account']; ?></td>
 							<td><?php echo $data['no_rek']; ?></td>
-							<td><?php echo date('d-m-Y', strtotime($data['tanggal_transfer'])); ?></td>
+							<td><?php echo date('d-m-Y', strtotime($data['tgl_transfer'])); ?></td>
 							<td><?php echo $data['total_pembayaran']; ?></td>
 							<td>
 								<?php if (!empty($data['bukti_pembayaran'])) : ?>
-									<img src="<?php echo $data['bukti_pembayaran']; ?>" alt="Bukti Pembayaran" style="max-width: 100px;">
+									<img src="images/bukti/<?php echo $data['bukti_pembayaran']; ?>" alt="Bukti Pembayaran" style="max-width: 100px;">
 								<?php else : ?>
 									Tidak Ada Bukti Pembayaran
 								<?php endif; ?>

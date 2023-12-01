@@ -183,7 +183,7 @@ if ($user_id === null || $level === null) {
 												$banner_id = @$_GET['banner_id'];
 												$query = "DELETE FROM banner WHERE banner_id = '$banner_id'";
 												if ($mysqli->query($query)) {
-													echo '<script type="text/javascript">window.location.href="../kue/halaman_admin.php?page=banner";</script>';
+													echo '<script type="text/javascript">window.location.href="halaman_admin.php?page=banner";</script>';
 												} else {
 													echo "Gagal menghapus data: " . $mysqli->error;
 												}

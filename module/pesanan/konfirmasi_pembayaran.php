@@ -23,7 +23,7 @@ $id_pesanan = $_GET["id_pesanan"];
                 </div>
                 <div class="form-group">
                     <label>Unggah Bukti Pembayaran</label>
-                    <input type="file" name="bukti_pembayaran" accept=".pdf, .jpg, .png" required>
+                    <input type="file" name="gambar" accept=".pdf, .jpg, .png" required>
                 </div>
                 <input type="submit" name="kirim" value="Kirim" class="btn btn-success">
             </form>

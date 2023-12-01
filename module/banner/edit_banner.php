@@ -51,7 +51,7 @@
 									?>
 									<script type="text/javascript"> 
 									alert("data berhasil diedit");
-									window.location.href="../gawekue/halaman_admin.php?page=banner";
+									window.location.href="halaman_admin.php?page=banner";
 									</script>
 									<?php
 								}else{
@@ -61,7 +61,7 @@
 									?>
 									<script type="text/javascript"> 
 									alert("data berhasil diedit");
-									window.location.href="../gawekue/halaman_admin.php?page=banner";
+									window.location.href="halaman_admin.php?page=banner";
 									</script>
 									<?php
 								}else{

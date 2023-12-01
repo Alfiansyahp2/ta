@@ -22,34 +22,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['edit_karyawan'])) {
     $jabatan = $_POST['jabatan'];
     $status = $_POST['status'];
 
-    // Validate and sanitize user input
-    $nama = mysqli_real_escape_string($mysqli, $nama);
-    $no_telp = mysqli_real_escape_string($mysqli, $no_telp);
-    $alamat = mysqli_real_escape_string($mysqli, $alamat);
-    $email = mysqli_real_escape_string($mysqli, $email);
-    $jabatan = mysqli_real_escape_string($mysqli, $jabatan);
+    $query = "UPDATE `karyawan` SET `nama_karyawan` = '$nama' , no_telp= '$no_telp', alamat= '$alamat', email= '$email', jabatan= '$jabatan', status= '$status' WHERE `karyawan`.`id_karyawan` = $id_karyawan;    ";
 
-    $updateQuery = $mysqli->prepare("UPDATE karyawan SET nama_karyawan=?, no_telp=?, alamat=?, email=?, jabatan=?, status=? WHERE id_karyawan=?");
-
-    // Bind the parameters
-    $updateQuery->bind_param("sssssi", $nama, $no_telp, $alamat, $email, $jabatan, $status, $id_karyawan);
-
-    if ($updateQuery->execute()) {
+    if ($mysqli->query($query) === TRUE) {
         ?>
-        <script type="text/javascript">
-            alert("Data karyawan berhasil diedit");
-            window.location.href="../ta/halaman_admin.php?page=karyawan";
+        <script type="text/javascript"> 
+            alert("Tambah karyawan baru berhasil");
+            window.location.href = "halaman_admin.php?page=karyawan";
         </script>
         <?php
     } else {
-        ?>
-        <script type="text/javascript">
-            alert("Update karyawan failed: <?php echo $mysqli->error; ?>");
-        </script>
-        <?php
+        echo "Gagal: " . $query . "<br>" . $mysqli->error;
     }
 
-    $updateQuery->close();
+    $mysqli->close();
 }
 ?>
 

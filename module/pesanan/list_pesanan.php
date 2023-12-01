@@ -2,9 +2,9 @@
 $queryPesanan = "";
 
 if ($level == "admin") {
-    $queryPesanan = "SELECT pesanan.*, user.nama_lengkap FROM pesanan JOIN user ON pesanan.user_id=user.user_id ORDER BY pesanan.tgl_pemesanan DESC";
+    $queryPesanan = "SELECT pesanan.*, user.nama_lengkap FROM pesanan JOIN user ON pesanan.user_id=user.user_id  ORDER BY `pesanan`.`id_pesanan` DESC";
 } else {
-    $queryPesanan = "SELECT pesanan.*, user.nama_lengkap FROM pesanan JOIN user ON pesanan.user_id=user.user_id WHERE pesanan.user_id='$user_id' ORDER BY pesanan.tgl_pemesanan DESC";
+    $queryPesanan = "SELECT pesanan.*, user.nama_lengkap FROM pesanan JOIN user ON pesanan.user_id=user.user_id WHERE pesanan.user_id='$user_id' ORDER BY `pesanan`.`id_pesanan` DESC";
 }
 
 $resultPesanan = $mysqli->query($queryPesanan);

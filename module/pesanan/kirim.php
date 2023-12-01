@@ -41,20 +41,8 @@ while ($data = $db->fetch_assoc()) {
 	</div> 
 	<div class="form-group">
 		<label>Status</label>    
-		<select name="status" class="form-control">
-				<?php
-				
-					foreach($arrayStatusPesanan AS $key => $value){
-						if($status == $key){
-							echo "<option value='$key' selected='true'>$value</option>";
-						}
-						else{
-							echo "<option value='$key'>$value</option>";
-						}
-					}
-				
-				?>
-			</select>
+		<input type="text" class="form-control"  name="status" required />
+	</div>  
 	</div>  
 	
 		<input class="btn btn-success" type="submit" value="Kirim" name="kirimp" />

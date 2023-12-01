@@ -1,14 +1,14 @@
 <?php
 include "../../koneksi.php";
 
-$nama = @$_POST['nama'];
-$no_telp = @$_POST['no_telp'];
-$alamat = @$_POST['alamat'];
-$email = @$_POST['email'];
-$jabatan = @$_POST['jabatan'];
-$status = @$_POST['status'];
+$nama = $_POST['nama'];
+$no_telp = $_POST['no_telp'];
+$alamat = $_POST['alamat'];
+$email = $_POST['email'];
+$jabatan = $_POST['jabatan'];
+$status = $_POST['status'];
 
-$simpan_karyawan = @$_POST['simpan_karyawan'];
+$simpan_karyawan = $_POST['simpan_karyawan'];
 
 if ($simpan_karyawan) {
      

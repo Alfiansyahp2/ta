@@ -12,16 +12,19 @@
 	$konfirmasi = $_POST['konfirmasi'];
 	$kirimp = $_POST['kirimp'];
 	$diskon = $_POST['diskon'];
-	
+	//
 	if($kirim){
 	
 		$user_id = $_SESSION['user_id'];
 		$nomor_rekening = $_POST['norek'];
 		$nama_akun = $_POST['nama_akun'];
 		$waktu_saat_ini = date("Y-m-d");
-
-		$queryPembayaran = $mysqli->query("INSERT INTO konfirmasi_pembayaran (id_pesanan, nomor_rekening, nama_akun, waktu_saat_ini) VALUES ('$id_pesanan', '$nomor_rekening', '$nama_akun', '$waktu_saat_ini')");
-
+		$sumber = $_FILES['gambar']['tmp_name'];
+		$target = '../../images/bukti/';
+		$nama_gambar = $_FILES['gambar']['name'];
+		move_uploaded_file($sumber, $target . $nama_gambar);
+		$queryPembayaran = $mysqli->query("INSERT INTO konfirmasi_pembayaran (id_pesanan, no_rek, nama_account, tgl_transfer, bukti_pembayaran) VALUES ('$id_pesanan', '$nomor_rekening', '$nama_akun', '$waktu_saat_ini','$nama_gambar')");
+		
 		if ($queryPembayaran) {
 			$mysqli->query("UPDATE pesanan SET status='1' WHERE id_pesanan='$id_pesanan'");
 			?>
