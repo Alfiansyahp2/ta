@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['edit_karyawan'])) {
 
     $query = "UPDATE `karyawan` SET `nama_karyawan` = '$nama' , no_telp= '$no_telp', alamat= '$alamat', email= '$email', jabatan= '$jabatan', status= '$status' WHERE `karyawan`.`id_karyawan` = $id_karyawan;    ";
 
+<<<<<<< HEAD
     if ($mysqli->query($query) === TRUE) {
         ?>
         <script type="text/javascript"> 
@@ -33,6 +34,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['edit_karyawan'])) {
         <?php
     } else {
         echo "Gagal: " . $query . "<br>" . $mysqli->error;
+=======
+    $updateQuery = $mysqli->prepare("UPDATE karyawan SET nama_karyawan=?, no_telp=?, alamat=?, email=?, jabatan=?, status=? WHERE id_karyawan=?");
+
+    // Bind the parameters
+    $updateQuery->bind_param("sssssi", $nama, $no_telp, $alamat, $email, $jabatan, $status, $id_karyawan);
+
+    if ($updateQuery->execute()) {
+        // Redirect after successful form submission
+        header("Location: ../ta/halaman_admin.php?page=karyawan");
+        exit();
+    } else {
+        $error_message = "Update karyawan failed: " . $mysqli->error;
+>>>>>>> 4356d6e274b35d39e9be513e4534f7aee35d1b1f
     }
 
     $mysqli->close();
