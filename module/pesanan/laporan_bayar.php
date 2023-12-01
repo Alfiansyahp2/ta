@@ -48,7 +48,7 @@
 			<tbody>
 				<?php
 				$no = 1;
-				$query = "SELECT * FROM konfirmasi_pembayaran";
+				$query = "SELECT * FROM konfirmasi_pembayaran JOIN pesanan ON pesanan.id_pesanan = konfirmasi_pembayaran.konfirmasi_id;";
 				$result = $mysqli->query($query);
 
 				if ($result) {
@@ -59,7 +59,7 @@
 							<td><?php echo $data['nama_account']; ?></td>
 							<td><?php echo $data['no_rek']; ?></td>
 							<td><?php echo date('d-m-Y', strtotime($data['tanggal_transfer'])); ?></td>
-							<td><?php echo $data['total_pembayaran']; ?></td>
+							<td><?php echo $data['total_harga']; ?></td>
 							<td>
 								<?php if (!empty($data['bukti_pembayaran'])) : ?>
 									<img src="<?php echo $data['bukti_pembayaran']; ?>" alt="Bukti Pembayaran" style="max-width: 100px;">

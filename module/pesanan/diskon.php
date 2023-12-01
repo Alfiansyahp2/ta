@@ -46,7 +46,7 @@ $harga = $row['harga'];
     </div>
     <div class="form-group">
         <label>Diskon</label>
-        <input type="text" class="form-control" name="diskon" id="diskon" oninput="Diskon()" />
+        <input type="text" type="number" class="form-control" name="diskon" id="diskon" oninput="Diskon()" />
     </div>
     <div class="form-group">
         <label>Total Harga</label>

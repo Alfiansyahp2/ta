@@ -35,18 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['edit_karyawan'])) {
     $updateQuery->bind_param("sssssi", $nama, $no_telp, $alamat, $email, $jabatan, $status, $id_karyawan);
 
     if ($updateQuery->execute()) {
-        ?>
-        <script type="text/javascript">
-            alert("Data karyawan berhasil diedit");
-            window.location.href="../ta/halaman_admin.php?page=karyawan";
-        </script>
-        <?php
+        // Redirect after successful form submission
+        header("Location: ../ta/halaman_admin.php?page=karyawan");
+        exit();
     } else {
-        ?>
-        <script type="text/javascript">
-            alert("Update karyawan failed: <?php echo $mysqli->error; ?>");
-        </script>
-        <?php
+        $error_message = "Update karyawan failed: " . $mysqli->error;
     }
 
     $updateQuery->close();
