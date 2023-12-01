@@ -22,12 +22,14 @@
             <!-- Tambahkan opsi bulan lainnya sesuai kebutuhan -->
         </select>
         <input type="submit" class="btn btn-primary" name="filter" value="Filter">
-        <input type="submit" class="btn btn-primary" name="cetak" value="Cetak">
+    	<!-- Ubah input type button menjadi button -->
+		<button type="button" class="btn btn-primary" onclick="printTable()">Cetak</button>
+
     </form>
 </div>
 <div class="card-body">
     <div class="table-responsive">
-        <table class="table table-hover" id="datatables">
+	<table class="table table-hover" id="datatables" id="printTable">
             <thead>
                 <tr>
                     <th>NO</th>
@@ -127,7 +129,16 @@
 						echo "<script>window.print();</script>";
 					}
 					?>
+					<script>
+						function printTable() {
+							var printContents = document.getElementById('datatables').outerHTML;
+							var originalContents = document.body.innerHTML;
+							document.body.innerHTML = printContents;
+							window.print();
+							document.body.innerHTML = originalContents;
+						}
 
+					</script>
             </tbody>
         </table>
     </div>
