@@ -1,111 +1,80 @@
-<div class="container">
-	<h3>Laporan Pembayaran</h3><br>
-
-	<form class="form-inline my-2 my-lg-0 mr-lg-2" action="module/pesanan/pdf/cetak_bayar.php" method="post">
-
-		<div class="input-group">
-			<label for="tgl" class="col-sm-2 control-label">Tgl</label>
-			<input class="form-control" type="date" name="tgl1">S/d
-			<input class="form-control" type="date" name="tgl2">
-		</div>
-
-		<style>
-			.btn-container {
-				margin-right: 30px;
-				/* Atur margin kanan sesuai kebutuhan */
-			}
-		</style>
-
-		<div class="btn-container">
-			<input type="submit" class="btn btn-primary" name="lihat" value="Lihat">
-		</div>
-
-		<div class="btn-container">
-			<input type="submit" class="btn btn-primary" name="cetak" value="Cetak">
-		</div>
-
-
-	</form>
-	<br><br>
-</div>
 <div class="card-title" style="text-align:center;">
-	<h4>Tabel Laporan bayar</h4>
-
+    <h4>Tabel Laporan</h4>
 </div>
+
 <div class="card-body">
-	<div class="table-responsive">
-		<table class="table table-hover" id="datatables">
-			<thead>
-				<tr>
-					<th>NO</th>
-					<th>Nama Akun</th>
-					<th>Nomor Rekening</th>
-					<th>Tanggal Pembayaran</th>
-					<th>total pesanan</th>
-					<th>Total Harga</th>
-					<th></th>
-					<th>Bukti Pembayaran</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				$no = 1;
-				$query = "SELECT * FROM konfirmasi_pembayaran JOIN pesanan ON pesanan.id_pesanan = konfirmasi_pembayaran.konfirmasi_id;";
-				$result = $mysqli->query($query);
+    <!-- Form filter bulan -->
+    <form method="post">
+        <label for="bulan">Pilih Bulan:</label>
+        <select name="bulan" id="bulan">
+            <?php
+            // Menampilkan dropdown bulan
+            for ($i = 1; $i <= 12; $i++) {
+                $selected = ($i == date('n')) ? 'selected' : '';
+                echo "<option value='$i' $selected>$i - " . date("F", mktime(0, 0, 0, $i, 1)) . "</option>";
+            }
+            ?>
+        </select>
+        <input type="submit" class="btn btn-primary" name="pilih" value="pilih">
+    </form>
 
-				if ($result) {
-					while ($data = $result->fetch_assoc()) {
-				?>
-						<tr>
-							<td><?php echo $no++; ?></td>
-							<td><?php echo $data['nama_account']; ?></td>
-							<td><?php echo $data['no_rek']; ?></td>
-							<td><?php echo date('d-m-Y', strtotime($data['tgl_transfer'])); ?></td>
-							<td><?php echo $data['total_pembayaran']; ?></td>
+    <div class="table-responsive">
+        <table class="table table-hover" id="datatables">
+            <thead>
+                <tr>
+                    <th>NO</th>
+                    <th>Nama Akun</th>
+                    <th>Nomor Rekening</th>
+                    <th>Tanggal Pembayaran</th>
+                    <th>Total Harga</th>
+                    <th>Bukti Pembayaran</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $no = 1;
+                // Modifikasi query untuk mengambil data sesuai bulan yang dipilih
+                $selectedMonth = isset($_POST['bulan']) ? $_POST['bulan'] : date('n');
+                $query = "SELECT * FROM konfirmasi_pembayaran 
+                          JOIN pesanan ON pesanan.id_pesanan = konfirmasi_pembayaran.konfirmasi_id 
+                          JOIN pesanan_detail ON pesanan.id_pesanan = pesanan_detail.id_pesanan
+                          WHERE MONTH(tgl_transfer) = $selectedMonth;";
+                $result = $mysqli->query($query);
 
-							<td><?php echo date('d-m-Y', strtotime($data['tanggal_transfer'])); ?></td>
-							<td><?php echo $data['total_harga']; ?></td>
+                if ($result) {
+                    while ($data = $result->fetch_assoc()) {
+                ?>
+                        <tr>
+                            <td><?php echo $no++; ?></td>
+                            <td><?php echo $data['nama_account']; ?></td>
+                            <td><?php echo $data['no_rek']; ?></td>
+                            <td><?php echo date('d-m-Y', strtotime($data['tgl_transfer'])); ?></td>
+                            <td><?php echo $data['total_harga']; ?></td>
+                            <td>
+                                <?php if (!empty($data['bukti_pembayaran'])) : ?>
+                                    <?php
+                                    $imagePath = 'images/bukti/' . $data['bukti_pembayaran'];
+                                    // Check if the path is relative, if yes, add the base directory
+                                    if (!file_exists($imagePath)) {
+                                        $imagePath = __DIR__ . '/' . $imagePath;
+                                    }
+                                    ?>
+                                    <a href="<?php echo $imagePath; ?>" target="_blank">
+                                        <img src="<?php echo $imagePath; ?>" alt="Bukti Pembayaran" style="max-width: 100px;">
+                                    </a>
+                                <?php else : ?>
+                                    Tidak Ada Bukti Pembayaran
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                <?php
+                    }
+                } else {
+                    die("Gagal menjalankan query: " . $mysqli->error);
+                }
 
-							<td>
-								<?php if (!empty($data['bukti_pembayaran'])) : ?>
-									<?php
-									$imagePath = 'images/bukti/' . $data['bukti_pembayaran'];
-									// Check if the path is relative, if yes, add the base directory
-									if (!file_exists($imagePath)) {
-										$imagePath = __DIR__ . '/' . $imagePath;
-									}
-									?>
-									<a href="<?php echo $imagePath; ?>" target="_blank">
-										<img src="<?php echo $imagePath; ?>" alt="Bukti Pembayaran" style="max-width: 100px;">
-									</a>
-								<?php else : ?>
-									Tidak Ada Bukti Pembayaran
-								<?php endif; ?>
-							</td>
-
-							<!-- <td>
-											<div class="btn-group">
-												<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													Action
-												</button>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="?page=kota&action=edit&id_kota=<?php echo $data['id_kota']; ?>">Edit</a>
-													<a class="dropdown-item" onclick="return confirm('yakin ingin menghapus data ?')" href="?page=kota&action=hapus&id_kota=<?php echo $data['id_kota']; ?>">Hapus</a>
-												</div>
-											</div>
-										</td> -->
-						</tr>
-				<?php
-					}
-				} else {
-					die("Gagal menjalankan query: " . $mysqli->error);
-				}
-
-				?>
-			</tbody>
-		</table>
-		<!-- <a href="?page=kota&action=tambah_kota" class="btn btn-success">+Tambah Kecamatan</a> -->
-	</div>
-</div>
-
+                ?>
+            </tbody>
+        </table>
+    </div>
 </div>

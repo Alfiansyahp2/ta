@@ -33,7 +33,7 @@ if ($result === false) {
 
 $row = $result->fetch_assoc();
 $nama_penerima = $row['nama_penerima'];
-$harga = $row['harga'];
+$harga = $row['total_harga'];
 ?>
 
 <div class="form-group">

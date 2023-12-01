@@ -1,66 +1,6 @@
 <?php
 include "../../koneksi.php";
 
-<<<<<<< HEAD
-        </div>
-            <div class="card-body">
-                <div class="basic-form">
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label>Gambar</label>
-                            <input type="file" name="gambar" class="form-control">
-                        </div>
-						<div class="form-group">
-                            <label>Status</label>
-							<div class="radio-inline"> 
-								<input type="radio" name="status" id="opsi1" value="on" <?php if($status == "on"){ echo "checked='true'"; } ?> required> On
-								<input type="radio" name="status" id="opsi2" value="off" <?php if($status == "off"){ echo "checked='true'"; } ?> required> Off
-							</div>
-                        </div>
-                            <input type="submit" name="edit_banner" value="Edit" class="btn btn-default">
-                    </form>
-					
-					<?php
-						
-						$status=@$_POST['status'];
-						
-						$sumber=@$_FILES['gambar']['tmp_name'];
-						$target='images/';
-						$nama_gambar=@$_FILES['gambar']['name'];
-						
-						$edit=@$_POST['edit_banner'];
-						
-						if($edit){
-								if($nama_gambar == ""){
-									mysql_query("update banner set status='$status' where banner_id='$banner_id'") or die(mysql_error());
-									?>
-									<script type="text/javascript"> 
-									alert("data berhasil diedit");
-									window.location.href="halaman_admin.php?page=banner";
-									</script>
-									<?php
-								}else{
-								$pindah = move_uploaded_file($sumber, $target.$nama_gambar);
-								if($pindah){
-									mysql_query("update banner set gambar='$nama_gambar', status='$status' where banner_id='$banner_id'") or die(mysql_error());
-									?>
-									<script type="text/javascript"> 
-									alert("data berhasil diedit");
-									window.location.href="halaman_admin.php?page=banner";
-									</script>
-									<?php
-								}else{
-								?>
-								<script type="text/javascript">
-									alert("upload gambar gagal");
-								</script>
-								<?php
-									}
-								}
-						}
-					?>
-					
-=======
 $banner_id = @$_GET['banner_id'];
 $query = "SELECT * FROM banner WHERE banner_id=?";
 $stmt = $mysqli->prepare($query);
@@ -88,7 +28,6 @@ $stmt->close();
                 <div class="form-group">
                     <label>Gambar</label>
                     <input type="file" name="gambar" class="form-control">
->>>>>>> 4356d6e274b35d39e9be513e4534f7aee35d1b1f
                 </div>
                 <div class="form-group">
                     <label>Status</label>
