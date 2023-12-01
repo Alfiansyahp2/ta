@@ -55,10 +55,21 @@ if (isset($_POST['login'])) {
                     </div>
                     <input type="submit" class="btn btn-success" name="login" value="Login">
                 </form>
+                <p class="mt-3">
+            <a href="index.php?page=lupa_pass">Lupa Password?</a>
+        </p>
             </div>
         </div>
     </div>
 </div>
 
+<?php
+
+$page = @$_GET['page'];
+$action = @$_GET['action'];
+if ($page == "lupa_pass") {
+    include "lupa_pass.php";
+}
+    ?>
 
 
