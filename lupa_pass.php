@@ -1,25 +1,7 @@
-<div class="col-lg-8" style="margin-top: 180px; margin-bottom: 180px;">
-    <div class="card">
-        <div class="card-title">
-            <h4>Halaman Lupa Password</h4>
-        </div>
-    <div class="card-body">
-        <div class="basic-form">
-				<form action="" method="post">
-					<div class="form-group">
-						<label>Masukkan email anda</label>
-						<input type="email" name="email" class="form-control" placeholder="Email" required>
-					</div> 
-					
-						<input type="submit" class="btn btn-default" name="act_reset" value="Reset">
-				</form>
-			</div>
-		</div>
-    </div>
-</div>
-
 <?php
 include "koneksi.php";
+
+$showForgotPasswordForm = true; // Ganti dengan logika sesuai kebutuhan Anda
 
 if (isset($_POST['act_reset'])) {
     date_default_timezone_set("Asia/Jakarta");
@@ -32,10 +14,7 @@ if (isset($_POST['act_reset'])) {
     $yy = str_shuffle($pass);
     $passwordbaru = substr($yy, $xx, $panjang);
 
-    $email = trim(strip_tags($_POST['email']));
-
-    // Create a connection to the database
-  
+    $email = strtolower(trim(strip_tags($_POST['email'])));
 
     // Use a prepared statement to select user data
     $query = "SELECT user_id, email, nama_lengkap, username FROM user WHERE email = ?";
@@ -66,7 +45,16 @@ if (isset($_POST['act_reset'])) {
                 $updateStmt->bind_param("si", $hashedPassword, $user_id);
 
                 if ($updateStmt->execute()) {
-                    echo '<div class="warning">Kata sandi baru telah direset</div><br><br>' . $pesan . '<hr>';
+                    echo '<div class="col-lg-8" style="margin-top: 180px; margin-bottom: 180px;">
+                            <div class="card">
+                                <div class="card-title">
+                                    <h4>Kata sandi baru telah direset</h4>
+                                </div>
+                                <div class="card-body">
+                                    ' . $pesan . '<hr>
+                                </div>
+                            </div>
+                          </div>';
                 } else {
                     echo '<div class="warning">Gagal mengupdate kata sandi baru</div>';
                 }
@@ -85,4 +73,51 @@ if (isset($_POST['act_reset'])) {
     // Close the database connection
     $mysqli->close();
 }
+
+if ($showForgotPasswordForm) {
+    echo '
+    <div class="col-lg-8" style="margin-top: 180px; margin-bottom: 180px;">
+        <div class="card">
+            <div class="card-title">
+                <h4>Halaman Lupa Password</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label>Masukkan email anda</label>
+                            <input type="email" name="email" class="form-control" placeholder="Email" required>
+                        </div> 
+                        <input type="submit" class="btn btn-default" name="act_reset" value="Reset">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>';
+}
+
+// Formulir perubahan kata sandi
+echo '
+    <div class="col-lg-8" style="margin-top: 180px; margin-bottom: 180px;">
+        <div class="card">
+            <div class="card-title">
+                <h4>Ubah Kata Sandi</h4>
+            </div>
+            <div class="card-body">
+                <div class="basic-form">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label>Masukkan kata sandi baru</label>
+                            <input type="password" name="new_password" class="form-control" placeholder="Kata Sandi Baru" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Konfirmasi kata sandi baru</label>
+                            <input type="password" name="confirm_password" class="form-control" placeholder="Konfirmasi Kata Sandi Baru" required>
+                        </div>
+                        <input type="submit" class="btn btn-default" name="act_change_password" value="Ubah Kata Sandi">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>';
 ?>
