@@ -55,6 +55,9 @@ if (isset($_POST['act_reset'])) {
                                 </div>
                             </div>
                           </div>';
+
+                    // Set $showForgotPasswordForm menjadi false agar formulir lupa password tidak ditampilkan
+                    $showForgotPasswordForm = false;
                 } else {
                     echo '<div class="warning">Gagal mengupdate kata sandi baru</div>';
                 }
@@ -95,29 +98,4 @@ if ($showForgotPasswordForm) {
         </div>
     </div>';
 }
-
-// Formulir perubahan kata sandi
-echo '
-    <div class="col-lg-8" style="margin-top: 180px; margin-bottom: 180px;">
-        <div class="card">
-            <div class="card-title">
-                <h4>Ubah Kata Sandi</h4>
-            </div>
-            <div class="card-body">
-                <div class="basic-form">
-                    <form action="" method="post">
-                        <div class="form-group">
-                            <label>Masukkan kata sandi baru</label>
-                            <input type="password" name="new_password" class="form-control" placeholder="Kata Sandi Baru" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Konfirmasi kata sandi baru</label>
-                            <input type="password" name="confirm_password" class="form-control" placeholder="Konfirmasi Kata Sandi Baru" required>
-                        </div>
-                        <input type="submit" class="btn btn-default" name="act_change_password" value="Ubah Kata Sandi">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>';
 ?>
