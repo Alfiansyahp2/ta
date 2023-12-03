@@ -40,10 +40,9 @@ if (isset($_POST['login'])) {
 </br></br>
     
     <div class="card">
-        <div class="card-title">
-            <h4>Halaman Login</h4>
+        <div class="card-title" style="text-align: center;">
+            <br><h4>Halaman Login</h4>
         </div>
-
         <div class="card-body">
             <div class="basic-form">
                 <form action="" method="POST">
@@ -53,12 +52,14 @@ if (isset($_POST['login'])) {
                     <div class="form-group">
                         <input type="password" name="password" class="form-control" placeholder="Password" required>
                     </div>
-                    <input type="submit" class="btn btn-success" name="login" value="Login">
-                    <a href="index.php?page=lupa_pass">Lupa Password?</a>
+                    <div class="center-btn">
+                        <input type="submit" class="btn btn-success" name="login" value="Login">
+                        <a href="index.php?page=lupa_pass">Lupa Password?</a>
+                    </div>
                 </form>
                 <p class="mt-3">
                     <span style="margin-top: 10px;">Belum punya akun?</span>
-                    <p><a href="index.php?page=register" class="btn btn-success" style="margin-top: 10px;">Register</a></p>
+                    <br><a href="index.php?page=register" class="btn btn-success" style="margin-top: 10px;">Registrasi</a>
                 </p>
             </div>
         </div>
