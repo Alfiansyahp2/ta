@@ -28,118 +28,96 @@
     </form>
 </div>
 <div class="card-body">
-    <div class="table-responsive">
-	<table class="table table-hover" id="datatables" id="printTable">
-            <thead>
-                <tr>
-                    <th>NO</th>
-                    <th>Nama Akun</th>
-                    <th>Nomor Rekening</th>
-                    <th>Tanggal Pembayaran</th>
-                    <th>Total Harga</th>
-                    <th>Bukti Pembayaran</th>
-                </tr>
-            </thead>
-            <tbody>
+	<div class="table-responsive">
+		<table class="table table-hover" id="datatables">
+			<thead>
+				<tr>
+					<th>NO</th>
+					<th>Nama Akun</th>
+					<th>Nomor Rekening</th>
+					<th>Tanggal Pembayaran</th>
+					<th>Jumlah pesanan</th>
+					<th>Total Harga</th>
+					<th>Bukti Pembayaran</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php 
+				if (isset($_POST['bulan']) ) {
+					$bulanFilter = $_POST['bulan'];
+					$query = "SELECT * FROM konfirmasi_pembayaran 
+							WHERE MONTH(konfirmasi_pembayaran.tgl_transfer) = '$bulanFilter'";
+				} else {
+					$query = "SELECT * FROM konfirmasi_pembayaran ";
+				}
+				$no = 1;
+				//$query = "SELECT * FROM konfirmasi_pembayaran JOIN pesanan ON pesanan.id_pesanan = konfirmasi_pembayaran.konfirmasi_id;";
+				$result = $mysqli->query($query);
+
+				if ($result) {
+					while ($data = $result->fetch_assoc()) {
+						$idpesanan = $data['id_pesanan'];
+						//;
+						$kota  = "SELECT pesanan.id_kota, kota.tarif FROM pesanan JOIN kota ON pesanan.id_kota = kota.id_kota WHERE pesanan.id_pesanan='$idpesanan';";
+						$ambil = $mysqli->query($kota);
+						$kotanya = $ambil->fetch_assoc();
+						$queryTotalHarga = "SELECT id_pesanan, SUM(harga * qty) AS total_harga FROM pesanan_detail WHERE id_pesanan = '$idpesanan' GROUP BY id_pesanan;";
+						$ambil2 = $mysqli->query($queryTotalHarga);
+						$detail2 = $ambil2->fetch_assoc();
+						$qty = "SELECT id_pesanan, SUM(qty) AS qty FROM pesanan_detail WHERE id_pesanan = '$idpesanan' GROUP BY id_pesanan;";
+						$qtt = $mysqli->query($qty);
+						$qtyy = $qtt->fetch_assoc();
+
+						 
+				?>
+						<tr>
+							<td><?php echo $no++; ?></td>
+							<td><?php echo $data['nama_account']; ?></td>
+							<td><?php echo $data['no_rek']; ?></td>
+							<td><?php echo date('d-m-Y', strtotime($data['tgl_transfer'])); ?></td>
+							<td><?php echo $qtyy['qty']; ?></td>
+							<td>Rp. <?php echo number_format($detail2['total_harga']+$kotanya['tarif']) . ",00" ?></td>
+
+							<td>
+								<?php if (!empty($data['bukti_pembayaran'])) : ?>
+									<?php
+									$imagePath = 'images/bukti/' . $data['bukti_pembayaran'];
+									// Check if the path is relative, if yes, add the base directory
+									if (!file_exists($imagePath)) {
+										$imagePath = __DIR__ . '/' . $imagePath;
+									}
+									?>
+									<a href="<?php echo $imagePath; ?>" target="_blank">
+										<img src="<?php echo $imagePath; ?>" alt="Bukti Pembayaran" style="max-width: 100px;">
+									</a>
+								<?php else : ?>
+									Tidak Ada Bukti Pembayaran
+								<?php endif; ?>
+							</td>
+
+							<!-- <td>
+											<div class="btn-group">
+												<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													Action
+												</button>
+												<div class="dropdown-menu">
+													<a class="dropdown-item" href="?page=kota&action=edit&id_kota=<?php echo $data['id_kota']; ?>">Edit</a>
+													<a class="dropdown-item" onclick="return confirm('yakin ingin menghapus data ?')" href="?page=kota&action=hapus&id_kota=<?php echo $data['id_kota']; ?>">Hapus</a>
+												</div>
+											</div>
+										</td> -->
+						</tr>
 				<?php
-					include "../../koneksi.php";
-					$no = 1;
-
-					// Modifikasi query untuk menyertakan filter bulan
-					$bulanFilter = isset($_POST['bulan']) ? $_POST['bulan'] : '';
-					if ($bulanFilter) {
-						$query = "SELECT * FROM konfirmasi_pembayaran 
-								JOIN pesanan ON pesanan.id_pesanan = konfirmasi_pembayaran.konfirmasi_id 
-								JOIN pesanan_detail ON pesanan.id_pesanan = pesanan_detail.id_pesanan
-								WHERE MONTH(konfirmasi_pembayaran.tgl_transfer) = '$bulanFilter'";
-					} else {
-						$query = "SELECT * FROM konfirmasi_pembayaran 
-								JOIN pesanan ON pesanan.id_pesanan = konfirmasi_pembayaran.konfirmasi_id 
-								JOIN pesanan_detail ON pesanan.id_pesanan = pesanan_detail.id_pesanan";
 					}
+				} else {
+					die("Gagal menjalankan query: " . $mysqli->error);
+				}
 
-					$result = $mysqli->query($query);
+				?>
+			</tbody>
+		</table>
+		<!-- <a href="?page=kota&action=tambah_kota" class="btn btn-success">+Tambah Kecamatan</a> -->
+	</div>
+</div>
 
-					if ($result) {
-						while ($data = $result->fetch_assoc()) {
-							// Menampilkan total harga
-							$idPesanan = $data['id_pesanan'];
-							$queryTotalHarga = "SELECT SUM(harga) AS total_harga FROM pesanan_detail WHERE id_pesanan = ?";
-
-							// Persiapkan statement
-							$stmt = $mysqli->prepare($queryTotalHarga);
-							if (!$stmt) {
-								die("Gagal mempersiapkan statement: " . $mysqli->error);
-							}
-
-							$stmt->bind_param("i", $idPesanan); // Gunakan "i" untuk tipe data integer (id_pesanan)
-							if (!$stmt->execute()) {
-								die("Gagal mengeksekusi statement: " . $stmt->error);
-							}
-
-							// Ambil hasil query
-							$resultTotalHarga = $stmt->get_result();
-							if (!$resultTotalHarga) {
-								die("Gagal mendapatkan hasil query: " . $stmt->error);
-							}
-
-							$dataTotalHarga = $resultTotalHarga->fetch_assoc();
-							if (!$dataTotalHarga) {
-								die("Gagal mendapatkan data total harga");
-							}
-
-							$totalHarga = $dataTotalHarga['total_harga'];
-
-							// Tutup statement
-							$stmt->close();
-
-							echo "<tr>";
-							echo "<td>$no</td>";
-							echo "<td>{$data['nama_account']}</td>";
-							echo "<td>{$data['no_rek']}</td>";
-							echo "<td>" . date('d-m-Y', strtotime($data['tgl_transfer'])) . "</td>";
-							echo "<td>Rp " . number_format($totalHarga, 2, ',', '.') . ",00</td>";
-							echo "<td>";
-
-							if (!empty($data['bukti_pembayaran'])) {
-								$imagePath = 'images/bukti/' . $data['bukti_pembayaran'];
-								// Check if the path is relative, if yes, add the base directory
-								if (!file_exists($imagePath)) {
-									$imagePath = __DIR__ . '/' . $imagePath;
-								}
-								echo "<a href='$imagePath' target='_blank'><img src='$imagePath' alt='Bukti Pembayaran' style='max-width: 100px;'></a>";
-							} else {
-								echo "Tidak Ada Bukti Pembayaran";
-							}
-
-							echo "</td>";
-							echo "</tr>";
-
-							$no++;
-						}
-
-						// Tutup koneksi
-						$mysqli->close();
-					} else {
-						die("Gagal menjalankan query: " . $mysqli->error);
-					}
-
-					// Fungsi Cetak
-					if (isset($_POST['cetak'])) {
-						echo "<script>window.print();</script>";
-					}
-					?>
-					<script>
-						function printTable() {
-							var printContents = document.getElementById('datatables').outerHTML;
-							var originalContents = document.body.innerHTML;
-							document.body.innerHTML = printContents;
-							window.print();
-							document.body.innerHTML = originalContents;
-						}
-
-					</script>
-            </tbody>
-        </table>
-    </div>
 </div>
