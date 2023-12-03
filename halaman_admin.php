@@ -111,7 +111,7 @@ if ($user_id === null || $level === null) {
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li> <a href="halaman_admin.php" aria-expanded="false">Dashboard</a>
+                        <li> <a href="halaman_admin.php" aria-expanded="false"><i class="fa fa-star"></i></i><span class="hide-menu">Dashboard</span></a>
                         </li>
                         <li class="nav-label">Data</li>
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Master</span></a>
@@ -124,7 +124,7 @@ if ($user_id === null || $level === null) {
                                 <li><a href="?page=kue">Kue</a></li>	
                             </ul>
                         </li>
-						<li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Transaksi</span></a>
+						<li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-money"></i><span class="hide-menu">Transaksi</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="?page=pesanan">Pesanan</a></li>
                             </ul>
