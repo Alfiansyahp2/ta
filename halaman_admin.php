@@ -73,22 +73,6 @@ if ($user_id === null || $level === null) {
                     </ul>
                     <!-- User profile and search -->
                     <ul class="navbar-nav my-lg-0">
-                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope"></i>
-								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-							</a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
-                                <div class="message-center">
-								
-									<?php
-										include "chat_admin.php";
-									?>
-									
-                                </div>    
-                            </div>
-                        </li>
-                        <!-- End Messages -->
                         <!-- Profile -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/5.jpg" alt="user" class="profile-pic" /></a>
@@ -111,7 +95,7 @@ if ($user_id === null || $level === null) {
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
-                        <li> <a href="halaman_admin.php" aria-expanded="false">Dashboard</a>
+                        <li> <a href="halaman_admin.php" aria-expanded="false"><i class="fa fa-star"></i></i><span class="hide-menu">Dashboard</span></a>
                         </li>
                         <li class="nav-label">Data</li>
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Master</span></a>
@@ -119,12 +103,12 @@ if ($user_id === null || $level === null) {
 								<li><a href="?page=karyawan">Karyawan</a></li>
 								<li><a href="?page=user">user</a></li>
                                 <li><a href="?page=banner">Banner</a></li>
-                                <li><a href="?page=kota">Kecamatan</a></li>
+                                <!-- <li><a href="?page=kota">Kecamatan</a></li> -->
                                 <li><a href="?page=kategori">Kategori</a></li>	
                                 <li><a href="?page=kue">Kue</a></li>	
                             </ul>
                         </li>
-						<li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Transaksi</span></a>
+						<li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-money"></i><span class="hide-menu">Transaksi</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="?page=pesanan">Pesanan</a></li>
                             </ul>
@@ -144,18 +128,6 @@ if ($user_id === null || $level === null) {
         <!-- End Left Sidebar  -->
         <!-- Page wrapper  -->
         <div class="page-wrapper">
-            <!-- Bread crumb -->
-            <div class="row page-titles">
-                <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Dashboard</h3> </div>
-                <div class="col-md-7 align-self-center">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
-                    </ol>
-                </div>
-            </div>
-            <!-- End Bread crumb -->
             <!-- Container fluid  -->
             <div class="container-fluid">
                 <!-- Start Page Content -->
@@ -209,24 +181,24 @@ if ($user_id === null || $level === null) {
 												}
 											}
 										}
-                                        else if ($page == "kota") {
-											if ($action == "") {
-												include "module/kota/list_kota.php";
-											} elseif ($action == "tambah_kota") {
-												include "module/kota/tambah_kota.php";
-											} elseif ($action == "edit") {
-												include "module/kota/edit_kota.php";
-											} elseif ($action == "hapus") {
-												$id_kota = @$_GET['id_kota'];
-												$query = "DELETE FROM kota WHERE id_kota = '$id_kota'";
+                                        // else if ($page == "kota") {
+										// 	if ($action == "") {
+										// 		include "module/kota/list_kota.php";
+										// 	} elseif ($action == "tambah_kota") {
+										// 		include "module/kota/tambah_kota.php";
+										// 	} elseif ($action == "edit") {
+										// 		include "module/kota/edit_kota.php";
+										// 	} elseif ($action == "hapus") {
+										// 		$id_kota = @$_GET['id_kota'];
+										// 		$query = "DELETE FROM kota WHERE id_kota = '$id_kota'";
 												
-												if ($mysqli->query($query)) {
-													echo '<script type="text/javascript">window.location.href="../kue/halaman_admin.php?page=kota";</script>';
-												} else {
-													echo "Gagal menghapus data: " . $mysqli->error;
-												}
-											}
-										}
+										// 		if ($mysqli->query($query)) {
+										// 			echo '<script type="text/javascript">window.location.href="../kue/halaman_admin.php?page=kota";</script>';
+										// 		} else {
+										// 			echo "Gagal menghapus data: " . $mysqli->error;
+										// 		}
+										// 	}
+										// }
 										else if ($page == "kategori") {
 											if ($action == "") {
 												include "module/kategori/list_kategori.php";

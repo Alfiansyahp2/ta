@@ -1,7 +1,7 @@
 <div class="col-lg-8" style="margin-top: 50px; margin-bottom: 50px;">
     <div class="card">
-        <div class="card-title">
-            <h4>Halaman Registrasi</h4>
+        <div class="card-title" style="text-align: center;">
+            <br><h4>Registrasi Akun</h4>
         </div>
         <div class="card-body">
             <div class="basic-form">

@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 
-$showForgotPasswordForm = true; // Ganti dengan logika sesuai kebutuhan Anda
+$showForgotPasswordForm = true;
 
 if (isset($_POST['act_reset'])) {
     date_default_timezone_set("Asia/Jakarta");
@@ -10,7 +10,7 @@ if (isset($_POST['act_reset'])) {
     $panjang = '8';
     $len = strlen($pass);
     $start = $len - $panjang;
-    $xx = rand('0', $start);
+    $xx = rand(0, $start);
     $yy = str_shuffle($pass);
     $passwordbaru = substr($yy, $xx, $panjang);
 
@@ -39,22 +39,23 @@ if (isset($_POST['act_reset'])) {
 
             if (mail($alamatEmail, $title, $pesan, $header)) {
                 // Update the new password to the database
-                $hashedPassword = md5($passwordbaru);
+                $hashedPassword = password_hash($passwordbaru, PASSWORD_DEFAULT);
                 $updateQuery = "UPDATE user SET password = ? WHERE user_id = ?";
                 $updateStmt = $mysqli->prepare($updateQuery);
                 $updateStmt->bind_param("si", $hashedPassword, $user_id);
 
                 if ($updateStmt->execute()) {
-                    echo '<div class="col-lg-8" style="margin-top: 180px; margin-bottom: 180px;">
-                            <div class="card">
-                                <div class="card-title">
-                                    <h4>Kata sandi baru telah direset</h4>
-                                </div>
-                                <div class="card-body">
-                                    ' . $pesan . '<hr>
-                                </div>
+                    echo '
+                    <div class="col-lg-8" style="margin-top: 180px; margin-bottom: 180px;">
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Kata sandi baru telah direset</h4>
                             </div>
-                          </div>';
+                            <div class="card-body">
+                                ' . $pesan . '<hr>
+                            </div>
+                        </div>
+                    </div>';
 
                     // Set $showForgotPasswordForm menjadi false agar formulir lupa password tidak ditampilkan
                     $showForgotPasswordForm = false;
@@ -78,7 +79,7 @@ if (isset($_POST['act_reset'])) {
 }
 
 if ($showForgotPasswordForm) {
-    echo '
+    ?>
     <div class="col-lg-8" style="margin-top: 180px; margin-bottom: 180px;">
         <div class="card">
             <div class="card-title">
@@ -90,12 +91,13 @@ if ($showForgotPasswordForm) {
                         <div class="form-group">
                             <label>Masukkan email anda</label>
                             <input type="email" name="email" class="form-control" placeholder="Email" required>
-                        </div> 
+                        </div>
                         <input type="submit" class="btn btn-default" name="act_reset" value="Reset">
                     </form>
                 </div>
             </div>
         </div>
-    </div>';
+    </div>
+    <?php
 }
 ?>

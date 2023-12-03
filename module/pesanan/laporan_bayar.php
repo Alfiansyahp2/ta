@@ -112,12 +112,3 @@
 				} else {
 					die("Gagal menjalankan query: " . $mysqli->error);
 				}
-
-				?>
-			</tbody>
-		</table>
-		<!-- <a href="?page=kota&action=tambah_kota" class="btn btn-success">+Tambah Kecamatan</a> -->
-	</div>
-</div>
-
-</div>
