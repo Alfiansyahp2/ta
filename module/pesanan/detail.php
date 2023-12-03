@@ -114,15 +114,15 @@ while ($rowdetail = $resultdetail->fetch_assoc()) {
     $no++;
 }
 
-$subtotal; 
+$subtotal = $subtotal + $tarif; 
 ?>
 
 		
-		<!-- <tr>
-			<td colspan="4">Biaya Pengiriman</td>
+		<tr>
+			<td colspan="5">Biaya Pengiriman</td>
 			<td><?php echo rupiah($tarif); ?></td>
 		</tr>
-		 -->
+		
 		<tr>
 			<td colspan="5"><b>Total pesanan</b></td>
 			<td><b><?php echo rupiah($subtotal); ?></b></td>

@@ -1,7 +1,8 @@
 <div class="card-title" style="text-align:center;">
-    <h4>Tabel Laporan</h4>
+    <h2>Tabel Laporan</h2>
 </div>
-<div class="btn-container">
+<br>
+<div class="btn-container" style="margin: 30px;">
     <!-- Tambahkan form untuk filter bulan -->
     <form method="post">
         <label for="bulan">Pilih Bulan:</label>
@@ -94,21 +95,28 @@
 									Tidak Ada Bukti Pembayaran
 								<?php endif; ?>
 							</td>
-
-							<!-- <td>
-											<div class="btn-group">
-												<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-													Action
-												</button>
-												<div class="dropdown-menu">
-													<a class="dropdown-item" href="?page=kota&action=edit&id_kota=<?php echo $data['id_kota']; ?>">Edit</a>
-													<a class="dropdown-item" onclick="return confirm('yakin ingin menghapus data ?')" href="?page=kota&action=hapus&id_kota=<?php echo $data['id_kota']; ?>">Hapus</a>
-												</div>
-											</div>
-										</td> -->
 						</tr>
 				<?php
 					}
 				} else {
 					die("Gagal menjalankan query: " . $mysqli->error);
 				}
+				?>
+				<?php
+				if (isset($_POST['cetak'])) {
+						echo "<script>window.print();</script>";
+					}
+					?>
+					<script>
+						function printTable() {
+							var printContents = document.getElementById('datatables').outerHTML;
+							var originalContents = document.body.innerHTML;
+							document.body.innerHTML = printContents;
+							window.print();
+							document.body.innerHTML = originalContents;
+						}
+					</script>
+			</tbody>
+		</table>
+	</div>
+</div>

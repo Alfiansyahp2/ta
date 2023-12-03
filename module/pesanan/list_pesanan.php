@@ -42,7 +42,7 @@ if ($resultPesanan->num_rows == 0) {
                 <td>$row[nama_lengkap]</td>
                 <td>
                     <a class='btn btn-success' href='index.php?page=pesanan&module=pesanan&action=detail&id_pesanan=$row[id_pesanan]'>Detail</a>
-                    // $diskon
+                    $diskon
                     $adminbutton
                     $konfirmasi
                     $kirim
