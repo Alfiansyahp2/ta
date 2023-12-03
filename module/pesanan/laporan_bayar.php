@@ -98,7 +98,7 @@
 							echo "<td>{$data['nama_account']}</td>";
 							echo "<td>{$data['no_rek']}</td>";
 							echo "<td>" . date('d-m-Y', strtotime($data['tgl_transfer'])) . "</td>";
-							echo "<td>Rp " . number_format($totalHarga, 2, ',', '.') . ",00</td>";
+							echo "<td>Rp " . number_format($totalHarga) . ",00</td>";
 							echo "<td>";
 
 							if (!empty($data['bukti_pembayaran'])) {
