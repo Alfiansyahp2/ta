@@ -40,9 +40,14 @@ while ($data = $db->fetch_assoc()) {
 		</select>
 	</div> 
 	<div class="form-group">
-		<label>Status</label>    
-		<input type="text" class="form-control"  name="status" required />
-	</div>  
+    <label for="status">Status</label>
+    <select class="form-control" name="status" id="status" required>
+        <option value="Dalam perjalan">dalam perjalanan</option>
+        <option value="Sampai">sampai</option>
+        <!-- Tambahkan opsi sesuai kebutuhan Anda -->
+    </select>
+</div>
+
 	</div>  
 	
 		<input class="btn btn-success" type="submit" value="Kirim" name="kirimp" />
