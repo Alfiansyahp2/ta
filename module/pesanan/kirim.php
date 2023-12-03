@@ -42,8 +42,8 @@ while ($data = $db->fetch_assoc()) {
 	<div class="form-group">
     <label for="status">Status</label>
     <select class="form-control" name="status" id="status" required>
-        <option value="Dalam perjalan">dalam perjalanan</option>
-        <option value="Sampai">sampai</option>
+        <option value="Dalam perjalan">Dalam perjalanan</option>
+        <option value="Sampai">Sampai</option>
         <!-- Tambahkan opsi sesuai kebutuhan Anda -->
     </select>
 </div>

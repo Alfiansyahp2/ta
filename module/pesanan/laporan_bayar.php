@@ -64,12 +64,7 @@
 						while ($data = $result->fetch_assoc()) {
 							// Menampilkan total harga
 							$idPesanan = $data['id_pesanan'];
-							$queryTotalHarga = "SELECT id_pesanan, SUM(harga * qty) AS total_harga
-                    FROM pesanan_detail
-                    WHERE id_pesanan = ?
-                    GROUP BY id_pesanan";
-
-
+							$queryTotalHarga = "SELECT id_pesanan, SUM(harga * qty) AS total_harga FROM pesanan_detail WHERE id_pesanan = ? GROUP BY id_pesanan";
 							// Persiapkan statement
 							$stmt = $mysqli->prepare($queryTotalHarga);
 							if (!$stmt) {
