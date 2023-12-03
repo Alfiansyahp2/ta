@@ -73,22 +73,6 @@ if ($user_id === null || $level === null) {
                     </ul>
                     <!-- User profile and search -->
                     <ul class="navbar-nav my-lg-0">
-                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope"></i>
-								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-							</a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
-                                <div class="message-center">
-								
-									<?php
-										include "chat_admin.php";
-									?>
-									
-                                </div>    
-                            </div>
-                        </li>
-                        <!-- End Messages -->
                         <!-- Profile -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/5.jpg" alt="user" class="profile-pic" /></a>

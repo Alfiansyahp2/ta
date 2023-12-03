@@ -151,16 +151,6 @@ $totalbarang = count($keranjang);
 	</div>
 
 	<!-- Footer -->
-
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contohModalKecil">Kirim
-		Pesan</button>
-	<div class="modal fade" id="contohModalKecil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="padding-top:600px;">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<?php include "chat.php"; ?>
-			</div>
-		</div>
-	</div>
 	<footer class="py-5 bg-dark">
 		<div class="container">
 			<p class="m-0 text-center text-white">Muslimah Bakery &copy;</p>
