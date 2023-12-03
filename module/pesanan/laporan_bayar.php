@@ -64,7 +64,11 @@
 						while ($data = $result->fetch_assoc()) {
 							// Menampilkan total harga
 							$idPesanan = $data['id_pesanan'];
-							$queryTotalHarga = "SELECT SUM(harga) AS total_harga FROM pesanan_detail WHERE id_pesanan = ?";
+							$queryTotalHarga = "SELECT id_pesanan, SUM(harga * qty) AS total_harga
+                    FROM pesanan_detail
+                    WHERE id_pesanan = ?
+                    GROUP BY id_pesanan";
+
 
 							// Persiapkan statement
 							$stmt = $mysqli->prepare($queryTotalHarga);
@@ -72,7 +76,8 @@
 								die("Gagal mempersiapkan statement: " . $mysqli->error);
 							}
 
-							$stmt->bind_param("i", $idPesanan); // Gunakan "i" untuk tipe data integer (id_pesanan)
+							$stmt->bind_param("i", $idPesanan);
+
 							if (!$stmt->execute()) {
 								die("Gagal mengeksekusi statement: " . $stmt->error);
 							}
