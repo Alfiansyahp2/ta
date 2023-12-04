@@ -54,7 +54,7 @@ if (isset($_POST['login'])) {
                     </div>
                     <div class="center-btn">
                         <input type="submit" class="btn btn-success" name="login" value="Login">
-                        <a href="index.php?page=lupa_pass">Lupa Password?</a>
+                        <!-- <a href="index.php?page=lupa_pass">Lupa Password?</a> -->
                     </div>
                 </form>
                 <p class="mt-3">
