@@ -113,34 +113,78 @@ $totalbarang = count($keranjang);
       <div>
         <center><h1 class="section-title">INFORMASI<span> KONTAK</span></h1></center>
       </div>
-      <div class="contact-items">
-        <div class="contact-item">
-          <div class="icon"> <a href="https://wa.me/6281235561662"> <img
-                src="https://img.icons8.com/bubbles/100/000000/phone.png" /></a></div>
-          <div class="contact-info">
-            <h1>Phone</h1>
-            <h2>+62 812-3556-1662</h2>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon"><a href="mailto:muslimahbakery24@gmail.com"><img
-                src="https://img.icons8.com/bubbles/100/000000/new-post.png" /></a></div>
-          <div class="contact-info">
-            <h1>Email</h1>
-            <h2>muslimahbakery24@gmail.com</h2>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="icon"> <a href="https://maps.app.goo.gl/tp7fdhzzzQ23c2JT8"><img
-                src="https://img.icons8.com/bubbles/100/000000/map-marker.png" /></a></div>
-          <div class="contact-info">
-            <h1>Alamat</h1>
-            <h2>Jl. Supriadi No.131, Jawaan, Patemon, Kec. Pakusari, Kabupaten Jember, Jawa Timur 68181</h2>
-          </div>
-        </div>
-      </div>
+      <style>
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-item {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  .icon {
+    margin-right: 10px;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+
+<div class="contact-items">
+  <div class="contact-item">
+    <div class="icon">
+      <a href="https://wa.me/6281235561662">
+        <img src="https://img.icons8.com/bubbles/100/000000/phone.png" />
+      </a>
     </div>
+    <div class="contact-info">
+      <h3>Phone</h3>
+      <h4>+62 812-3556-1662</h4>
+    </div>
+  </div>
+  <div class="contact-item">
+    <div class="icon">
+      <a href="mailto:muslimahbakery24@gmail.com">
+        <img src="https://img.icons8.com/bubbles/100/000000/new-post.png" />
+      </a>
+    </div>
+    <div class="contact-info">
+      <h3>Email</h3>
+      <h4>muslimahbakery24@gmail.com</h4>
+    </div>
+  </div>
+  <div class="contact-item">
+    <div class="icon">
+      <a href="https://maps.app.goo.gl/tp7fdhzzzQ23c2JT8">
+        <img src="https://img.icons8.com/bubbles/100/000000/map-marker.png" />
+      </a>
+    </div>
+    <div class="contact-info">
+      <h3>Alamat</h3>
+      <h4>Jl. Supriadi No.131, Jawaan, Patemon, Kec. Pakusari, Kabupaten Jember, Jawa Timur 68181</h4>
+    </div>
+  </div>
+</div>
+
+
     
   </section>
+  <footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Muslimah Bakery &copy;</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<script src="datatables/datatables.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#datatables').DataTable();
+		});
+	</script>
 </body>
 </html>
