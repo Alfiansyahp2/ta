@@ -7,7 +7,7 @@
     <form method="post">
         <label for="bulan">Pilih Bulan:</label>
         <select name="bulan" id="bulan">
-            <option value="">Semua Bulan</option> <!-- Opsi baru untuk menampilkan semua bulan -->
+			<option value="">Semua Bulan</option> 
             <option value="01">Januari</option>
             <option value="02">Februari</option>
             <option value="03">Maret</option>
@@ -44,7 +44,7 @@
 			</thead>
 			<tbody>
 				<?php 
-				if (isset($_POST['bulan']) ) {
+				if (isset($_POST['bulan']) && !empty($_POST['bulan'])) {
 					$bulanFilter = $_POST['bulan'];
 					$query = "SELECT * FROM konfirmasi_pembayaran 
 							WHERE MONTH(konfirmasi_pembayaran.tgl_transfer) = '$bulanFilter'";
@@ -52,7 +52,6 @@
 					$query = "SELECT * FROM konfirmasi_pembayaran ";
 				}
 				$no = 1;
-				//$query = "SELECT * FROM konfirmasi_pembayaran JOIN pesanan ON pesanan.id_pesanan = konfirmasi_pembayaran.konfirmasi_id;";
 				$result = $mysqli->query($query);
 
 				if ($result) {
