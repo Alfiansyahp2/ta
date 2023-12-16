@@ -1,4 +1,4 @@
-<div class="card">
+
     <div class="card-title" style="text-align: center;">
         <h4>Tabel User</h4>
     </div>
@@ -62,4 +62,4 @@
             <a href="?page=user&action=tambah_user" class="btn btn-success">+ Tambah User</a>
         </div>
     </div>
-</div>
+

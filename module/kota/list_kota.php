@@ -1,6 +1,5 @@
-
         <div class="card-title" style="text-align:center;">
-			<h4>Tabel Kecamatan</h4>
+			<h4>Tabel Kota</h4>
 
         </div>
         <div class="card-body">
@@ -9,7 +8,7 @@
                     <thead>
                         <tr>
 							<th>NO</th>
-                            <th>Nama Kecamatan</th>
+                            <th>Nama Kota</th>
                             <th>Tarif</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -50,7 +49,7 @@
 						?>
                     </tbody>
                 </table>
-				<a href="?page=kota&action=tambah_kota" class="btn btn-success">+Tambah Kecamatan</a>
+				<a href="?page=kota&action=tambah_kota" class="btn btn-success">+Tambah Kota</a>
             </div>
         </div>
     

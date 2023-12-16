@@ -1,4 +1,4 @@
-<div class="card">
+
     <div class="card-header" style="text-align: center;">
         <h4>Tabel Karyawan</h4>
     </div>
@@ -60,4 +60,4 @@
             <a href="?page=karyawan&action=tambah_karyawan" class="btn btn-success">+ Tambah Karyawan</a>
         </div>
     </div>
-</div>
+

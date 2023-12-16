@@ -14,14 +14,14 @@
 
  <div class="col-lg-8">
 		<div class="card-title">
-            <h4>Form Edit Kecamatan</h4>
+            <h4>Form Edit Kota</h4>
 
         </div>
             <div class="card-body">
                 <div class="basic-form">
                     <form action="" method="post">
                         <div class="form-group">
-                            <label>Nama Kecamatan</label>
+                            <label>Nama Kota</label>
                             <input type="text" name="nama" class="form-control" value="<?php echo $data['nama_kota']; ?>"  required>
                         </div>
 						<div class="form-group">
