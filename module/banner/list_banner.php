@@ -1,10 +1,10 @@
-	<div class="card-title" style="text-align:center;">
-			<h4>Tabel Banner</h4>
-
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-hover" id="datatables">
-                <thead>
+<div class="card-title" style="text-align:center;">
+	<h4>Tabel Banner</h4>
+</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="datatables">
+				<thead>
                     <tr>
 						<th>NO</th>
                     	<th>Gambar</th>
@@ -12,7 +12,7 @@
                 		<th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                    <tbody>
 						<?php
 							$no = 1;
 							$query = "SELECT * FROM banner";
@@ -45,8 +45,8 @@
 							
 						?>
                     </tbody>
-            </table>
-            <a href="?page=banner&action=tambah_banner" class="btn btn-success">+Tambah Banner</a>
+                </table>
+				<a href="?page=banner&action=tambah_banner" class="btn btn-success">+Tambah Banner</a>
+            </div>
         </div>
-    </div>
-</div>
+    
